@@ -1,11 +1,8 @@
 import { Routes } from '@angular/router';
-import { Documentation } from './documentation/documentation';
-import { Crud } from './crud/crud';
-import { Empty } from './empty/empty';
+import { MY_ROUTES } from '@routes';
+import { C1Component } from '@modules/c1/c1.component';
 
 export default [
-    { path: 'documentation', component: Documentation },
-    { path: 'crud', component: Crud },
-    { path: 'empty', component: Empty },
-    { path: '**', redirectTo: '/notfound' }
+    { path: MY_ROUTES.pagesCore.base, loadChildren: () => import('./core/core.routes') },
+    { path: 'c1', component: C1Component }
 ] as Routes;

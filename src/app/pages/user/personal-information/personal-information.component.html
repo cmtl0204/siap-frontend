@@ -1,0 +1,315 @@
+@if (_coreService.loading()) {
+    <app-skeleton />
+} @else {
+    <p-toolbar>
+        <ng-template #start>
+
+        </ng-template>
+
+        <ng-template #center>
+        </ng-template>
+
+        <ng-template #end>
+            <!--            @if (editingControl.value) {-->
+            <!--                <p-button-->
+            <!--                    type="button"-->
+            <!--                    label="Guardar y Continuar"-->
+            <!--                    size="large"-->
+            <!--                    severity="success"-->
+            <!--                    [icon]="PrimeIcons.SAVE"-->
+            <!--                    (onClick)="onSubmit()" />-->
+            <!--            } @else {-->
+            <!--                <p-button-->
+            <!--                    type="button"-->
+            <!--                    label="Continuar"-->
+            <!--                    size="large"-->
+            <!--                    [icon]="PrimeIcons.ARROW_RIGHT"-->
+            <!--                    iconPos="right"-->
+            <!--                    (onClick)="onSubmit()" />-->
+            <!--            }-->
+        </ng-template>
+    </p-toolbar>
+
+    <!--    <p-divider />-->
+
+    <p-fluid>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="flex flex-col md:flex-row gap-8" formGroupName="additionalInformation">
+                <div class="md:w-1/2">
+                    <div class="card flex flex-col gap-4">
+                        <div class="font-semibold text-xl">Datos personales</div>
+
+                        <p-divider />
+
+                        <!-- email -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="correo"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Correo"
+                                [required]="correoField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-7">
+                                <input pInputText type="text" id="correo" formControlName="correo" class="mb-2" />
+
+                                <p-message severity="error" size="large"
+                                           appErrorMessage
+                                           [errors]="correoField.errors"
+                                           [touched]="correoField.touched"
+                                           [dirty]="correoField.dirty" />
+                                @if (fechaActualizacionCorreoField.value) {
+                                    <p-message severity="info" size="large">
+                                        <small>Última fecha de actualización:
+                                            <b>{{ fechaActualizacionCorreoField.value | date:'yyyy-MM-dd HH:mm:ss' }}</b>
+                                        </small>
+                                    </p-message>
+                                }
+                            </div>
+
+                            <div class="col-span-12 md:col-span-1">
+                                <p-button
+                                    [icon]="PrimeIcons.PENCIL"
+                                    severity="warn"
+                                    pTooltip="Actualizar correo"
+                                    (onClick)="updateVisible=true" />
+                            </div>
+                        </div>
+
+                        <!-- identification -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="cedula"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Cédula"
+                                [required]="cedulaField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="cedula" formControlName="cedula" />
+                            </div>
+
+                            <p-message severity="error" size="large"
+                                       appErrorMessage
+                                       [errors]="cedulaField.errors"
+                                       [touched]="cedulaField.touched"
+                                       [dirty]="cedulaField.dirty" />
+                        </div>
+
+                        <!-- name -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="nombres"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Nombres"
+                                [required]="nombresField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="nombres" formControlName="nombres" />
+
+                                <p-message
+                                    severity="error"
+                                    size="large"
+                                    appErrorMessage
+                                    [errors]="nombresField.errors"
+                                    [touched]="nombresField.touched"
+                                    [dirty]="nombresField.dirty" />
+                            </div>
+                        </div>
+
+                        <!-- cellPhone -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="telefono"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Teléfono"
+                                [required]="telefonoField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="telefono" formControlName="telefono" />
+
+                                <p-message
+                                    severity="error"
+                                    size="large"
+                                    appErrorMessage
+                                    [errors]="telefonoField.errors"
+                                    [touched]="telefonoField.touched"
+                                    [dirty]="telefonoField.dirty" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <div class="card flex flex-col gap-4">
+                        <div class="font-semibold text-xl">Actividad</div>
+
+                        <p-divider />
+
+                        <!-- nombreActividad -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="nombreActividad"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Actividad"
+                                [required]="nombreActividadField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <textarea pTextarea id="nombreActividad"
+                                          formControlName="nombreActividad"
+                                          [autoResize]="true"></textarea>
+
+                                <p-message severity="error" size="large"
+                                           appErrorMessage
+                                           [errors]="nombreActividadField.errors"
+                                           [touched]="nombreActividadField.touched"
+                                           [dirty]="nombreActividadField.dirty" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card flex flex-col gap-4">
+                        <div class="font-semibold text-xl">Datos postulación</div>
+
+                        <p-divider />
+
+                        <!-- province -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="provincia"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Provincia"
+                                [required]="provinciaField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="provincia" formControlName="provincia" />
+
+                                <p-message severity="error" size="large"
+                                           appErrorMessage
+                                           [errors]="provinciaField.errors"
+                                           [touched]="provinciaField.touched"
+                                           [dirty]="provinciaField.dirty" />
+                            </div>
+                        </div>
+
+                        <!-- canton -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="canton"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Cantón"
+                                [required]="cantonField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="canton" formControlName="canton" />
+
+                                <p-message severity="error" size="large"
+                                           appErrorMessage
+                                           [errors]="cantonField.errors"
+                                           [touched]="cantonField.touched"
+                                           [dirty]="cantonField.dirty" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-fluid>
+
+    <p-divider />
+
+    <p-toolbar>
+        <ng-template #start>
+
+        </ng-template>
+
+        <ng-template #center>
+        </ng-template>
+
+        <ng-template #end>
+            @if (editingControl.value) {
+                <p-button
+                    type="button"
+                    label="Guardar y Continuar"
+                    size="large"
+                    severity="success"
+                    [icon]="PrimeIcons.SAVE"
+                    (onClick)="onSubmit()" />
+            } @else {
+                <p-button
+                    type="button"
+                    label="Continuar"
+                    size="large"
+                    [icon]="PrimeIcons.ARROW_RIGHT"
+                    iconPos="right"
+                    (onClick)="onSubmit()" />
+            }
+        </ng-template>
+    </p-toolbar>
+}
+
+<p-dialog [(visible)]="updateVisible" [style]="{ width: '450px' }" header="Actualización de Correo" [modal]="true">
+    <ng-template #content>
+        <div class="flex flex-col gap-6">
+            <label
+                appLabel
+                for="correo"
+                class="block font-bold mb-3"
+                label="Nuevo correo"
+                [required]="emailControl">
+            </label>
+
+            <input pInputText id="email" class="col-span-12 md:col-span-4 flex items-center"
+                   [pKeyFilter]="blockSpace"
+                   [formControl]="emailControl" autocomplete="on" autofocus fluid />
+
+            <p-message severity="error" size="large"
+                       appErrorMessage
+                       [errors]="emailControl.errors"
+                       [touched]="emailControl.touched"
+                       [dirty]="emailControl.dirty" />
+
+            <p-button
+                label="Solicitar Código"
+                [disabled]="emailControl.invalid"
+                (onClick)="requestTransactionalEmailCode()"
+                [loading]="_coreService.loading()"
+                [fluid]="true" />
+
+            @if (emailControl.valid && transactionalCodeControl.enabled) {
+                <label
+                    appLabel
+                    for="transactionalCode"
+                    class="block font-bold mb-3"
+                    label="Ingrese el código enviado a su correo"
+                    [required]="transactionalCodeControl">
+                </label>
+
+                <p-inputotp
+                    id="transactionalCode"
+                    [disabled]="transactionalCodeControl.disabled"
+                    [formControl]="transactionalCodeControl"
+                    [length]="6"
+                    [integerOnly]="true" />
+
+                <p-message severity="error" size="large"
+                           appErrorMessage
+                           [errors]="transactionalCodeControl.errors"
+                           [touched]="transactionalCodeControl.touched"
+                           [dirty]="transactionalCodeControl.dirty" />
+            }
+        </div>
+    </ng-template>
+</p-dialog>

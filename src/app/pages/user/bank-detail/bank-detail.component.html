@@ -1,0 +1,191 @@
+@if (_coreService.loading()) {
+    <app-skeleton />
+} @else {
+    <p-toolbar>
+        <ng-template #start>
+
+        </ng-template>
+
+        <ng-template #center>
+        </ng-template>
+
+        <ng-template #end>
+<!--            <p-button-->
+<!--                type="button"-->
+<!--                class="mr-2"-->
+<!--                label="Regresar"-->
+<!--                size="large"-->
+<!--                [icon]="PrimeIcons.ARROW_LEFT"-->
+<!--                iconPos="left"-->
+<!--                severity="warn"-->
+<!--                (onClick)="previous.emit(null)" />-->
+
+<!--            @if (checked.value) {-->
+<!--                <p-button-->
+<!--                    type="button"-->
+<!--                    label="Guardar"-->
+<!--                    size="large"-->
+<!--                    severity="success"-->
+<!--                    [icon]="PrimeIcons.SAVE"-->
+<!--                    iconPos="right"-->
+<!--                    (onClick)="onSubmit()" />-->
+<!--            }-->
+        </ng-template>
+    </p-toolbar>
+
+    <p-fluid>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="flex flex-col md:flex-row gap-8 mt-6">
+                <div class="w-full">
+                    <div class="card flex flex-col gap-4">
+                        <p-message severity="info" size="large">
+                            <ng-template #icon>
+                                <i class="pi pi-info-circle"></i>
+                            </ng-template>
+
+                            <span class="ml-2 mr-2">
+                                <b>Informativo:</b> si su cuenta bancaria no es correcta dirigirse al siguiente enlace
+                            </span>
+
+                            <p-button (onClick)="linkToEEA()" [outlined]="true" severity="warn">
+                                Actualización Ecuatorianos en Acción
+                            </p-button>
+                        </p-message>
+
+<!--                        @if (!accountChangedField?.value) {-->
+<!--                            <div class="flex items-center">-->
+<!--                                <p-checkbox inputId="checked" [formControl]="checked" [binary]="true" />-->
+
+<!--                                <label for="checked" class="ml-2">-->
+<!--                                    Click para editar su cuenta (Recuerde que solo puede editar una sola vez)-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                        } @else {-->
+<!--                            <p-message severity="warn" size="large">-->
+<!--                                <ng-template #icon>-->
+<!--                                    <i class="pi pi-info-circle"></i>-->
+<!--                                </ng-template>-->
+
+<!--                                <span class="ml-2">Atención: su cuenta bancaria se encuentra actualizada</span>-->
+<!--                            </p-message>-->
+<!--                        }-->
+                    </div>
+
+                    <div formGroupName="additionalInformation" class="card flex flex-col gap-4">
+                        <div class="font-semibold text-xl">Datos cuenta bancaria</div>
+
+                        <p-divider />
+
+                        <!-- type -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="accountType"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Tipo de cuenta"
+                                [required]="accountTypeField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <p-select
+                                    id="accountType"
+                                    [options]="accountTypes"
+                                    formControlName="tipoCuenta"
+                                    class="w-full" />
+
+                                <p-message
+                                    appErrorMessage
+                                    [errors]="accountTypeField?.errors"
+                                    [touched]="accountTypeField?.touched"
+                                    [dirty]="accountTypeField?.dirty"
+                                    severity="error"
+                                    variant="simple"
+                                    size="small" />
+                            </div>
+                        </div>
+
+                        <!-- number -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="numeroCuenta"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Número de cuenta"
+                                [required]="accountNumberField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="numeroCuenta" formControlName="numeroCuenta" />
+
+                                <p-message
+                                    appErrorMessage
+                                    [errors]="accountNumberField?.errors"
+                                    [touched]="accountNumberField?.touched"
+                                    [dirty]="accountNumberField?.dirty"
+                                    severity="error"
+                                    variant="simple"
+                                    size="small" />
+                            </div>
+                        </div>
+
+                        <!-- shortName -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <label
+                                appLabel
+                                for="nombreCorto"
+                                class="col-span-12 md:col-span-4 flex items-center"
+                                label="Nombre corto"
+                                [required]="accountNameField">
+                            </label>
+
+                            <div class="col-span-12 md:col-span-8">
+                                <input pInputText type="text" id="nombreCorto" formControlName="nombreCorto" />
+
+                                <p-message
+                                    appErrorMessage
+                                    [errors]="accountNameField?.errors"
+                                    [touched]="accountNameField?.touched"
+                                    [dirty]="accountNameField?.dirty"
+                                    severity="error"
+                                    variant="simple"
+                                    size="small" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-fluid>
+
+    <p-toolbar>
+        <ng-template #start>
+
+        </ng-template>
+
+        <ng-template #center>
+        </ng-template>
+
+        <ng-template #end>
+            <p-button
+                type="button"
+                class="mr-2"
+                label="Regresar"
+                size="large"
+                [icon]="PrimeIcons.ARROW_LEFT"
+                iconPos="left"
+                severity="warn"
+                (onClick)="previous.emit(null)" />
+
+            @if (checked.value) {
+                <p-button
+                    type="button"
+                    label="Guardar"
+                    size="large"
+                    severity="success"
+                    [icon]="PrimeIcons.SAVE"
+                    iconPos="right"
+                    (onClick)="onSubmit()" />
+            }
+        </ng-template>
+    </p-toolbar>
+}
