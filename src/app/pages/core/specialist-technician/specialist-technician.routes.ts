@@ -4,7 +4,7 @@ import { SpecialistDashboardComponent } from '@modules/core/specialist-technicia
 
 export default [
     {
-        path: MY_ROUTES.pagesCore.specialistTechnician.dashboard.base,
+        path: MY_ROUTES.corePages.specialistTechnician.dashboard.base,
         component: SpecialistDashboardComponent
     }
 ] as Routes;

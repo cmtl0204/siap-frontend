@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found.component';
 import { MY_ROUTES } from '@routes';
+import { NotFoundComponent } from './not-found.component';
 import { UnauthorizedComponent } from './unauthorized.component';
 import { ForbiddenComponent } from './forbidden.component';
 import { UnavailableComponent } from './unavailable.component';

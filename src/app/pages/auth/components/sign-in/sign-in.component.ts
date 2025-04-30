@@ -17,7 +17,6 @@ import { UserHttpService } from '@modules/auth/user-http.service';
 import { Fluid } from 'primeng/fluid';
 import { Message } from 'primeng/message';
 import { LabelDirective } from '@utils/directives/label.directive';
-import { Divider } from 'primeng/divider';
 import { ScrollPanel } from 'primeng/scrollpanel';
 
 @Component({
@@ -25,7 +24,7 @@ import { ScrollPanel } from 'primeng/scrollpanel';
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
     standalone: true,
-    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ReactiveFormsModule, DatePickerModule, Fluid, Message, LabelDirective, Divider, ScrollPanel]
+    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ReactiveFormsModule, DatePickerModule, Fluid, Message, LabelDirective, ScrollPanel]
 })
 export default class SignInComponent {
     protected readonly environment = environment;

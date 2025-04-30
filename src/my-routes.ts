@@ -22,7 +22,7 @@ export const MY_ROUTES = {
             base: '503'
         }
     },
-    pagesCore: {
+    corePages: {
         base: 'core',
         absolute: 'pages/core',
         dacTechnician: {
@@ -66,7 +66,7 @@ export const MY_ROUTES = {
             }
         },
     },
-    auth: {
+    authPages: {
         base: 'auth'
     },
     login: 'auth/sign-in',
