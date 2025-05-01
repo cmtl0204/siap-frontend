@@ -25,7 +25,7 @@ export class ErrorMessageDirective implements OnChanges {
         noPasswordMatch: this.fieldNoPasswordMatch,
         userNotAvailable: this.fieldUserNotAvailable,
         userAvailable: this.fieldUserAvailable,
-        emailNotAvailable: this.fieldEmailNotAvailable,
+        invalidEmail: this.fieldInvalidEmail,
         phoneNotAvailable: this.fieldPhoneNotAvailable,
         dateInvalid: this.fieldDateValid,
         dateMax: this.fieldDateMax,
@@ -37,7 +37,7 @@ export class ErrorMessageDirective implements OnChanges {
         this._nativeElement = this._elementRef.nativeElement;
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(): void {
         this.setErrorMessage();
 
     }
@@ -128,8 +128,8 @@ export class ErrorMessageDirective implements OnChanges {
         return 'Usuario está disponible.';
     }
 
-    private get fieldEmailNotAvailable(): string {
-        return 'Este correo electrónico no está disponible.';
+    private get fieldInvalidEmail(): string {
+        return 'Correo electrónico no es válido.';
     }
 
     private get fieldPhoneNotAvailable(): string {

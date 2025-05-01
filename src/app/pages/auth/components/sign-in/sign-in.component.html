@@ -1,7 +1,6 @@
 <p-fluid>
     <div class="flex flex-col md:flex-row gap-8">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-
             <div class="card flex flex-col lg:col-start-2 lg:col-span-5 md:col-start-1 md:col-span-6 gap-4">
                 <img [src]="environment.PATH_ASSETS+'/images/auth/logo.png'"
                      alt=""
@@ -10,7 +9,6 @@
                 <p-message>
                     <ng-template #icon>
                         <p class="text-lg font-semibold text-center">
-                            <b>Importante: </b>
                             Si usted tiene inconvenientes para ingresar al sistema, comuníquese con el Ministerio de
                             Turismo
                         </p>
@@ -21,24 +19,49 @@
                     INFORMACIÓN DE LA CUENTA - SITURIN
                 </div>
 
-                <div class="flex flex-col gap-2">
-                    <label appLabel for="username" label="Correo Electrónico"></label>
+                <form [formGroup]="form" class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-2">
+                        <label
+                            appLabel for="username"
+                            label="Correo Electrónico"
+                            [required]="usernameField"></label>
 
-                    <input pInputText id="name1" type="text" />
-                </div>
+                        <input pInputText id="username" type="text" formControlName="username" />
 
-                <div class="flex flex-col gap-2">
-                    <label appLabel for="password" label="Contraseña"></label>
+                        <p-message
+                            appErrorMessage
+                            [errors]="usernameField.errors"
+                            [touched]="usernameField.touched"
+                            [dirty]="usernameField.dirty" />
+                    </div>
 
-                    <p-password id="password" type="text" [toggleMask]="true"></p-password>
-                </div>
+                    <div class="flex flex-col gap-2">
+                        <label
+                            appLabel for="password" label="Contraseña"
+                            [required]="passwordField"></label>
 
-                <div class="flex flex-col gap-2">
-                    <p-button label="Ingresar" [icon]="PrimeIcons.SIGN_IN" severity="success" />
-                    <p-button label="Crear Cuenta" [icon]="PrimeIcons.USER_PLUS" class="mt-2" />
-                    <p-button label="Recuperar Cuenta" [icon]="PrimeIcons.LOCK_OPEN" severity="warn" class="mt-2" />
-                </div>
+                        <p-password
+                            id="password" type="text" formControlName="password"
+                            [toggleMask]="true"
+                            [feedback]="false" />
 
+                        <p-message
+                            appErrorMessage
+                            [errors]="passwordField.errors"
+                            [touched]="passwordField.touched"
+                            [dirty]="passwordField.dirty" />
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <p-button
+                            label="Ingresar"
+                            [icon]="PrimeIcons.SIGN_IN"
+                            severity="success"
+                            (onClick)="onSubmit()" />
+                        <p-button label="Crear Cuenta" [icon]="PrimeIcons.USER_PLUS" class="mt-2" />
+                        <p-button label="Recuperar Cuenta" [icon]="PrimeIcons.LOCK_OPEN" severity="warn" class="mt-2" />
+                    </div>
+                </form>
                 <img [src]="environment.PATH_ASSETS+'/images/auth/footer.png'"
                      alt=""
                      class="mx-auto">
@@ -51,7 +74,7 @@
                 </div>
 
                 <p-message>
-                    <div class="text-lg font-semibold">
+                    <div class="text-sm font-semibold">
                         <p>
                             <b>Importante:</b>
                             Estimado Usuario, si su establecimiento se encuentra ubicado en el cantón Quito, por

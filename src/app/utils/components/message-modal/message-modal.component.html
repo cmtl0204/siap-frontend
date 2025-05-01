@@ -10,14 +10,18 @@
 
     <ng-template #content>
         <div class="text-center">
-            <i [class]="customMessageService.modalIcon"
-               [style]="{'font-size': '2rem','color':customMessageService.modalIconColor}"></i>
         </div>
 
         @if (Array.isArray(customMessageService.modalMessage)) {
             @for (message of customMessageService.modalMessage; track message) {
                 <ul>
-                    <li><h6>{{ message }}</h6></li>
+                    <li>
+                        <h6>
+                            <i [class]="customMessageService.modalIcon"
+                               [style]="{'color':customMessageService.modalIconColor}"></i>
+                            {{ message }}
+                        </h6>
+                    </li>
                 </ul>
             }
         } @else {

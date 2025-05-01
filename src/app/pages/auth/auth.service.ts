@@ -88,10 +88,10 @@ export class AuthService {
         setTimeout(() => {
             this._coreService.hideProcessing();
 
-            this._customMessageService.showInfo({ summary: 'Se cerró la sesión correctamente', detail: '' });
-
-            this._router.navigateByUrl('/auth/sign-in');
-        }, 800);
+            if (this.accessToken) {
+                this._customMessageService.showInfo({ summary: 'Se cerró la sesión correctamente', detail: '' });
+            }
+        }, 500);
     }
 
     selectDashboard() {

@@ -54,7 +54,7 @@ export class CustomMessageService {
         this._messageService.add({ severity: 'error', summary: error.error, detail: error.message });
     }
 
-    showFormErrors(message: string | string[]): void {
+     showFormErrors(message: string | string[]): void {
         if (Array.isArray(message)) message.sort();
 
         this._isModalVisible.set(true);
