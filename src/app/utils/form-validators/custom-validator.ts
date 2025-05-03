@@ -16,4 +16,16 @@ export class CustomValidator {
             return { invalidEmail: true };
         };
     }
+
+    static emailMINTUR(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const value = control.value;
+
+            if (!value || value.includes('@turismo.gob.ec')) {
+                return { invalidEmailMINTUR: true };
+            }
+
+            return null;
+        };
+    }
 }

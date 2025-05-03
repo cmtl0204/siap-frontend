@@ -17,17 +17,18 @@ import { UserHttpService } from '@modules/auth/user-http.service';
 import { Fluid } from 'primeng/fluid';
 import { Message } from 'primeng/message';
 import { LabelDirective } from '@utils/directives/label.directive';
-import { ScrollPanel } from 'primeng/scrollpanel';
 import { ErrorMessageDirective } from '@utils/directives/error-message.directive';
 import { CustomValidator } from '@utils/form-validators/custom-validator';
-import { JsonPipe } from '@angular/common';
+import { Divider } from 'primeng/divider';
+import SignUpComponent from '@modules/auth/components/sign-up/sign-up.component';
+import { MY_ROUTES } from '@routes';
 
 @Component({
     selector: 'app-sign-in',
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
     standalone: true,
-    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ReactiveFormsModule, DatePickerModule, Fluid, Message, LabelDirective, ScrollPanel, ErrorMessageDirective, JsonPipe]
+    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ReactiveFormsModule, DatePickerModule, Fluid, Message, LabelDirective, ErrorMessageDirective, Divider, SignUpComponent]
 })
 export default class SignInComponent {
     protected readonly environment = environment;
@@ -41,6 +42,7 @@ export default class SignInComponent {
     protected readonly PrimeIcons = PrimeIcons;
     protected form!: FormGroup;
     protected formErrors: string[] = [];
+    protected isRegistering = false;
 
     constructor() {
         this.buildForm();
@@ -88,4 +90,6 @@ export default class SignInComponent {
     protected get passwordField(): AbstractControl {
         return this.form.controls['password'];
     }
+
+    protected readonly MY_ROUTES = MY_ROUTES;
 }

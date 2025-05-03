@@ -26,6 +26,7 @@ export class ErrorMessageDirective implements OnChanges {
         userNotAvailable: this.fieldUserNotAvailable,
         userAvailable: this.fieldUserAvailable,
         invalidEmail: this.fieldInvalidEmail,
+        invalidEmailMINTUR: this.fieldInvalidEmailMINTUR,
         phoneNotAvailable: this.fieldPhoneNotAvailable,
         dateInvalid: this.fieldDateValid,
         dateMax: this.fieldDateMax,
@@ -130,6 +131,10 @@ export class ErrorMessageDirective implements OnChanges {
 
     private get fieldInvalidEmail(): string {
         return 'Correo electrónico no es válido.';
+    }
+
+    private get fieldInvalidEmailMINTUR(): string {
+        return 'Correo electrónico no puede pertencer al MINTUR.';
     }
 
     private get fieldPhoneNotAvailable(): string {
