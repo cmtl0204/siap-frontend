@@ -93,6 +93,26 @@ export class AuthHttpService {
         );
     }
 
+    verifyRucPendingPayment(ruc: string) {
+        const url = `${this._apiUrl}/verify-ruc-pending-payment/${ruc}`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
+                return response.data;
+            })
+        );
+    }
+
+    verifyRUC(ruc: string) {
+        const url = `${this._apiUrl}/verify-ruc/${ruc}`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
+                return response.data;
+            })
+        );
+    }
+
     acceptTermsConditions() {
         const url = `${this._apiUrl}/terms-conditions/accept`;
 

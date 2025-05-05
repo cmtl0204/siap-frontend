@@ -21,12 +21,13 @@ export class ErrorMessageDirective implements OnChanges {
         min: this.fieldMin,
         max: this.fieldMax,
         pattern: this.fieldPattern,
-        identification: this.fieldIdentification,
         noPasswordMatch: this.fieldNoPasswordMatch,
-        userNotAvailable: this.fieldUserNotAvailable,
-        userAvailable: this.fieldUserAvailable,
         invalidEmail: this.fieldInvalidEmail,
         invalidEmailMINTUR: this.fieldInvalidEmailMINTUR,
+        registeredIdentification: this.fieldRegisteredIdentification,
+        unregisteredUser: this.fieldUnregisteredUser,
+        pendingPaymentRuc: this.fieldRucPendingPayment,
+        unavailableUser: this.fieldUnavailableUser,
         phoneNotAvailable: this.fieldPhoneNotAvailable,
         dateInvalid: this.fieldDateValid,
         dateMax: this.fieldDateMax,
@@ -143,5 +144,21 @@ export class ErrorMessageDirective implements OnChanges {
 
     private get fieldAgreementExists(): string {
         return 'El número interno de convenio ya se encuentra registrado.';
+    }
+
+    private get fieldRegisteredIdentification(): string {
+        return 'El RUC ya se encuentra registrado.';
+    }
+
+    private get fieldRucPendingPayment(): string {
+        return 'El RUC ingresado mantiene pendiente el pago de la Contribución Uno por Mil sobre Activos Fijos, cobrados por esta Cartera de Estado, dentro del periodo de vigencia de la Ley de Turismo de Registro Oficial Suplemento No. 733 de 27 de Diciembre 2002, por favor sírvase asistir a la oficina zonal en la que se encuentra registrado su establecimiento para el trámite de revisión y declaración respectiva.';
+    }
+
+    private get fieldUnavailableUser(): string {
+        return 'El usuario no se encuentra disponible.';
+    }
+
+    private get fieldUnregisteredUser(): string {
+        return 'El usuario no se encuentra registrado, por favor registre una cuenta.';
     }
 }

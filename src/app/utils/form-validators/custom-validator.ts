@@ -1,31 +1,56 @@
-// src/app/validators/custom-validators.ts
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { debounceTime, Observable, of, switchMap, take } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthHttpService } from '@modules/auth/auth-http.service';
 
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+export function invalidEmailValidator(): ValidatorFn {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-export class CustomValidator {
-    static email(): ValidatorFn {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        return !value || emailRegex.test(value) ? null : { invalidEmail: true };
+    };
+}
 
-        return (control: AbstractControl): ValidationErrors | null => {
-            const value = control.value;
+export function invalidEmailMINTURValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        return !value || value.includes('@turismo.gob.ec') ? { invalidEmailMINTUR: true } : null;
+    };
+}
 
-            if (!value || emailRegex.test(value)) {
-                return null;
-            }
+export function registeredIdentificationValidator(authHttpService: AuthHttpService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+        if (!control.value) return of(null);
 
-            return { invalidEmail: true };
-        };
-    }
+        return of(control.value).pipe(
+            debounceTime(300),
+            take(1),
+            switchMap((value) => authHttpService.verifyIdentification(value).pipe(map((response) => (response ? { registeredIdentification: true } : null))))
+        );
+    };
+}
 
-    static emailMINTUR(): ValidatorFn {
-        return (control: AbstractControl): ValidationErrors | null => {
-            const value = control.value;
+export function unregisteredUserValidator(authHttpService: AuthHttpService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+        if (!control.value) return of(null);
 
-            if (!value || value.includes('@turismo.gob.ec')) {
-                return { invalidEmailMINTUR: true };
-            }
+        return of(control.value).pipe(
+            debounceTime(300),
+            take(1),
+            switchMap((value) => authHttpService.verifyIdentification(value).pipe(map((response) => (response ? null : { unregisteredUser: true }))))
+        );
+    };
+}
 
-            return null;
-        };
-    }
+export function pendingPaymentRucValidator(authHttpService: AuthHttpService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+        if (!control.value) return of(null);
+
+        return of(control.value).pipe(
+            debounceTime(300),
+            take(1),
+            switchMap((value) => authHttpService.verifyRucPendingPayment(value).pipe(map((response) => (response ? { pendingPaymentRuc: true } : null))))
+        );
+    };
 }

@@ -20,11 +20,12 @@ import { AppConfigurator } from './app/layout/component/app.configurator';
             <app-message-modal />
         }
 
-        <p-toast position="top-right" [life]="5000" />
+        <p-toast position="top-right" [life]="customMessageService.modalLife" />
 
         <app-configurator />
 
-        <router-outlet></router-outlet>`
+        <router-outlet />
+    `
 })
 export class AppComponent {
     protected readonly coreService = inject(CoreService);

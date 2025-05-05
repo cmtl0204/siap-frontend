@@ -1,17 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { MessageService, PrimeIcons } from 'primeng/api';
 
-type Severity =
-    | 'success'
-    | 'info'
-    | 'warn'
-    | 'danger'
-    | 'help'
-    | 'primary'
-    | 'secondary'
-    | 'contrast'
-    | null
-    | undefined;
+type Severity = 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
 
 @Injectable({
     providedIn: 'root'
@@ -27,12 +17,14 @@ export class CustomMessageService {
     private _modalIconColor: string = '';
     private _modalTitle: string = '';
     private _modalMessage: string | string[] = '';
+    private _modalLife: number = 5000;
 
     showSuccess({ summary, detail }: { summary: string; detail: string }) {
         this._messageService.add({ severity: 'success', summary, detail });
     }
 
     showError({ summary, detail }: { summary: string; detail: string }) {
+        this._modalLife = detail.length * 100;
         this._messageService.add({ severity: 'error', summary, detail });
     }
 
@@ -51,10 +43,12 @@ export class CustomMessageService {
     showHttpError(error: string | string[] | any) {
         if (Array.isArray(error)) error.sort();
 
+        this._modalLife = error.message.length * 100;
+
         this._messageService.add({ severity: 'error', summary: error.error, detail: error.message });
     }
 
-     showFormErrors(message: string | string[]): void {
+    showFormErrors(message: string | string[]): void {
         if (Array.isArray(message)) message.sort();
 
         this._isModalVisible.set(true);
@@ -99,5 +93,9 @@ export class CustomMessageService {
 
     set modalConfirmVisible(value: boolean) {
         this._modalConfirmVisible = value;
+    }
+
+    get modalLife(): number {
+        return this._modalLife;
     }
 }

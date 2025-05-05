@@ -12,7 +12,7 @@ import { LayoutService } from '../service/layout.service';
     imports: [CommonModule, RouterModule],
     template: `<router-outlet />`
 })
-export class AppBlank {
+export class AppLayoutBlank {
     overlayMenuOpenSubscription: Subscription;
 
     menuOutsideClickListener: any;

@@ -15,19 +15,19 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { Message } from 'primeng/message';
 import { LabelDirective } from '@utils/directives/label.directive';
 import { ErrorMessageDirective } from '@utils/directives/error-message.directive';
-import { invalidEmailMINTURValidator, invalidEmailValidator, unregisteredUserValidator } from '@utils/form-validators/custom-validator';
 import { InputOtp } from 'primeng/inputotp';
 import { KeyFilter } from 'primeng/keyfilter';
 import { MY_ROUTES } from '@routes';
 import { JsonPipe } from '@angular/common';
+import { invalidEmailMINTURValidator, invalidEmailValidator, pendingPaymentRucValidator, unregisteredUserValidator } from '@utils/form-validators/custom-validator';
 
 @Component({
-    selector: 'app-sign-up',
-    templateUrl: './sign-up.component.html',
+    selector: 'app-password-reset',
+    templateUrl: './password-reset.component.html',
     standalone: true,
     imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ReactiveFormsModule, DatePickerModule, Message, LabelDirective, ErrorMessageDirective, InputOtp, KeyFilter, JsonPipe]
 })
-export default class SignUpComponent {
+export default class PasswordResetComponent {
     @Output() outForm = new EventEmitter(true);
     protected readonly environment = environment;
     private readonly _formBuilder = inject(FormBuilder);
@@ -47,12 +47,11 @@ export default class SignUpComponent {
             this.transactionalCodeControl.reset();
             this.transactionalCodeControl.disable();
             this.emailField.reset();
-            this.emailField.enable();
             this.passwordField.reset();
             this.isValidTransactionalCode = false;
 
             if (value?.length === 13) {
-                // this.verifyIdentification();
+                this.verifyRUC();
             }
         });
 
@@ -65,14 +64,20 @@ export default class SignUpComponent {
 
     private buildForm() {
         this.form = this._formBuilder.group({
-            email: [null, [Validators.required, invalidEmailValidator(), invalidEmailMINTURValidator()]],
+            email: [
+                {
+                    value: null,
+                    disabled: true
+                },
+                [Validators.required, invalidEmailValidator(), invalidEmailMINTURValidator()]
+            ],
             password: [null, [Validators.required, Validators.minLength(8)]],
             name: [null, [Validators.required]],
             identification: [
                 null,
                 {
-                    validators: [Validators.required, Validators.minLength(10), Validators.maxLength(13)],
-                    asyncValidators: [unregisteredUserValidator(this._authHttpService)]
+                    validators: [Validators.required, Validators.minLength(13), Validators.maxLength(13)],
+                    asyncValidators: [unregisteredUserValidator(this._authHttpService), pendingPaymentRucValidator(this._authHttpService)]
                 }
             ]
         });
@@ -101,21 +106,8 @@ export default class SignUpComponent {
     }
 
     private verifyRUC() {
-        this._authHttpService.verifyRUC(this.identificationField.value).subscribe({});
+        this._authHttpService.verifyIdentification(this.identificationField.value).subscribe({});
         this.nameField.patchValue('hola');
-    }
-
-    private verifyIdentification() {
-        this._authHttpService.verifyIdentification(this.identificationField.value).subscribe({
-            next: (response) => {
-                if (response) {
-                    this._customMessageService.showError({
-                        summary: 'El usuario ya existe',
-                        detail: 'Por favor intente con otro RUC'
-                    });
-                }
-            }
-        });
     }
 
     protected requestTransactionalCode() {

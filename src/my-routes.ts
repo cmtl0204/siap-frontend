@@ -75,6 +75,10 @@ export const MY_ROUTES = {
         signUp: {
             base: 'sign-up',
             absolute: '/auth/sign-up'
+        },
+        passwordReset: {
+            base: 'password-reset',
+            absolute: '/auth/password-reset'
         }
     },
     login: 'auth/sign-in',
