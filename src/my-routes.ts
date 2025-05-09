@@ -23,48 +23,21 @@ export const MY_ROUTES = {
         }
     },
     corePages: {
-        base: 'core',
+        base: 'pages/core',
         absolute: '/pages/core',
-        dacTechnician: {
-            base: 'dac-technician',
-            absolute: '/pages/core/dac-technician',
+        manager: {
+            base: 'manager',
+            absolute: '/pages/core/manager',
             dashboard: {
                 base: 'dashboard',
-                absolute: '/pages/core/dac-technician/dashboard'
+                absolute: '/pages/core/manager/dashboard'
+            },
+            project: {
+                base: 'projects',
+                absolute: '/pages/core/manager/projects',
+                list: '/pages/core/manager/projects/list',
             }
         },
-        external: {
-            base: 'external-technician',
-            absolute: '/pages/core/external-technician',
-            dashboard: {
-                base: 'dashboard',
-                absolute: '/pages/core/external-technician/dashboard'
-            }
-        },
-        gadTechnician: {
-            base: 'dac-technician',
-            absolute: '/pages/core/gad-technician',
-            dashboard: {
-                base: 'dashboard',
-                absolute: '/pages/core/gad-technician/dashboard'
-            }
-        },
-        specialistTechnician: {
-            base: 'specialist-technician',
-            absolute: '/pages/core/specialist-technician',
-            dashboard: {
-                base: 'dashboard',
-                absolute: '/pages/core/specialist-technician/dashboard'
-            }
-        },
-        zonalTechnician: {
-            base: 'zonal-technician',
-            absolute: '/pages/core/zonal-technician',
-            dashboard: {
-                base: 'dashboard',
-                absolute: 'pages/core/zonal-technician/dashboard'
-            }
-        }
     },
     authPages: {
         base: 'auth',
@@ -81,6 +54,9 @@ export const MY_ROUTES = {
             absolute: '/auth/password-reset'
         }
     },
-    login: 'auth/sign-in',
-    dashboard: '/dashboard',
+    login: '/auth/sign-in',
+    dashboards: {
+        base: 'pages/dashboards',
+        absolute: '/pages/dashboards',
+    },
 };

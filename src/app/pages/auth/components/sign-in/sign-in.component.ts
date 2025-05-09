@@ -65,7 +65,7 @@ export default class SignInComponent {
     private signIn() {
         this._authHttpService.signIn(this.form.value).subscribe({
             next: (response) => {
-                console.log(response);
+                this._authService.selectDashboard();
             }
         });
     }

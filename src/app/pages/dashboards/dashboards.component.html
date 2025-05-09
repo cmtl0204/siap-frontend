@@ -1,0 +1,9 @@
+@switch (authService.role.code) {
+    @case (RoleEnum.ADMIN) {
+        <app-admin-dashboard />
+    }
+    @case (RoleEnum.MANAGER) {
+        <app-manager-dashboard />
+    }
+}
+

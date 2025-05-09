@@ -20,12 +20,12 @@ import { PrimeIcons } from 'primeng/api';
         <p-fluid>
             <div class="flex flex-col md:flex-row gap-8 mt-6">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-                    <div class="card h-full flex flex-col lg:col-start-2 lg:col-span-4 md:col-start-1 md:col-span-6 gap-4">
-                        <img [src]="environment.PATH_ASSETS + '/images/auth/logo.png'" alt="" class="mx-auto" />
-
+                    <div class="card h-full flex flex-col lg:col-start-5 lg:col-span-4 md:col-start-1 md:col-span-6 gap-4">
                         <p-message>
                             <ng-template #icon>
-                                <p class="text-lg font-semibold text-center">Si usted tiene inconvenientes para ingresar al sistema, comuníquese con el Ministerio de Turismo</p>
+                                <p class="text-lg font-semibold text-center">
+                                {{environment.APP_NAME}}
+                                </p>
                             </ng-template>
                         </p-message>
 
@@ -34,90 +34,6 @@ import { PrimeIcons } from 'primeng/api';
                         <router-outlet />
 
                         <img [src]="environment.PATH_ASSETS + '/images/auth/footer.png'" alt="" class="mx-auto" />
-                    </div>
-
-                    <div class="card h-full flex flex-col lg:col-start-6 lg:col-span-6 md:col-start-7 md:col-span-6 gap-4">
-                        <div class="font-semibold text-xl text-center">SISTEMA DE TURISMO INTELIGENTE</div>
-
-                        <p-message>
-                            <div class="text-sm font-semibold">
-                                <p>
-                                    <b>Importante:</b>
-                                    Estimado Usuario, si su establecimiento se encuentra ubicado en el cantón Quito, por favor acérquese a las oficinas de "Quito Turismo" para solicitar su Certificado de Registro Turístico.
-                                </p>
-                                <p><b>Dirección:</b> Parque Bicentenario, terminales del antiguo Aeropuerto de Quito.</p>
-                                <p><b>Teléfono:</b> (02) 2993 300 extensiones 1003, 1035 y 1068</p>
-                                <p>
-                                    <b>Correo electrónico:</b>
-                                    <a href="mailto:info@quito-turismo.gob.ec"> info&#64;quito-turismo.gob.ec</a>
-                                </p>
-                            </div>
-                        </p-message>
-
-                        <p-divider />
-
-                        <div class="flex flex-col gap-2">
-                            <a target="_blank" [href]="environment.PATH_ASSETS + '/files/auth/steps.pdf'">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                    <div class="md:col-span-2 flex flex-col gap-2">
-                                        <!--                                    <img-->
-                                        <!--                                        [src]="environment.PATH_ASSETS+'/images/auth/cinco_pasos.svg'"-->
-                                        <!--                                        alt="cabecera">-->
-                                        <i [class]="PrimeIcons.LIST_CHECK" style="font-size: 3rem;color:var(--primary-color)"></i>
-                                    </div>
-                                    <div class="md:col-span-10 flex flex-col gap-2">
-                                        <h6 class="mb-5" style="color: #01579B">5 PASOS PARA OBTENER UN REGISTRO DE TURISMO</h6>
-                                        <p>Pasos para obtener un certificado de Registro de Turismo.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <br />
-
-                            <a target="_blank" [routerLink]="['/simulador-externo']">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                    <div class="md:col-span-2 flex flex-col gap-2">
-                                        <!--                                    <img [src]="environment.PATH_ASSETS+'/images/auth/simulador_normativa.svg'"-->
-                                        <!--                                         alt="cabecera">-->
-                                        <i [class]="PrimeIcons.DESKTOP" style="font-size: 3rem;color:var(--primary-color)"></i>
-                                    </div>
-                                    <div class="md:col-span-10 flex flex-col gap-2">
-                                        <h6 class="mb-5" style="color: #01579B">SIMULADOR DE NORMATIVA</h6>
-                                        <p>Permite validar si se cumple o no con los requisitos para acceder a una clasificación y categoría específica.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <br />
-
-                            <a target="_blank" [href]="environment.PATH_ASSETS + '/files/auth/external_manual.pdf'">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                    <div class="md:col-span-2 flex flex-col gap-2">
-                                        <!--                                    <img [src]="environment.PATH_ASSETS+'/images/auth/manual_usuario.svg'"-->
-                                        <!--                                         alt="cabecera">-->
-
-                                        <i [class]="PrimeIcons.BOOK" style="font-size: 3rem;color:var(--primary-color)"></i>
-                                    </div>
-                                    <div class="md:col-span-10 flex flex-col gap-2">
-                                        <h6 class="mb-5" style="color: #01579B">MANUAL</h6>
-                                        <p>Manual de usuario del Sistema de Turismo Inteligente - SITURIN.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <br />
-
-                            <a target="_blank" [href]="environment.PATH_ASSETS + '/files/auth/terms_conditions.pdf'">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                    <div class="md:col-span-2 flex flex-col gap-2">
-                                        <!--                                    <img [src]="environment.PATH_ASSETS+'/images/auth/terminos_condiciones.svg'"-->
-                                        <!--                                         alt="cabecera">-->
-                                        <i [class]="PrimeIcons.VERIFIED" style="font-size: 3rem;color:var(--primary-color)"></i>
-                                    </div>
-                                    <div class="md:col-span-10 flex flex-col gap-2">
-                                        <h6 class="mb-5" style="color: #01579B">TÉRMINOS Y CONDICIONES</h6>
-                                        <p>Términos y Condiciones del Sistema de Turismo Inteligente - SITURIN.</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

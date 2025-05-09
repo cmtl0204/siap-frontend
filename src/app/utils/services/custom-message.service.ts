@@ -41,9 +41,12 @@ export class CustomMessageService {
     }
 
     showHttpError(error: string | string[] | any) {
-        if (Array.isArray(error)) error.sort();
-
         this._modalLife = error.message.length * 100;
+
+        if (Array.isArray(error.message)) {
+            this._modalLife = error.message.length * 5000;
+            error.message.sort();
+        }
 
         this._messageService.add({ severity: 'error', summary: error.error, detail: error.message });
     }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'app-topbar',
@@ -33,7 +34,7 @@ import { LayoutService } from '../service/layout.service';
                         />
                     </g>
                 </svg>
-                <span>SITURIN</span>
+                <span>{{environment.APP_SHORT_NAME}}</span>
             </a>
         </div>
 
@@ -89,4 +90,6 @@ export class AppTopbar {
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
+
+    protected readonly environment = environment;
 }

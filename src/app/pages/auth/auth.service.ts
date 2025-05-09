@@ -8,6 +8,7 @@ import { RoleEnum } from '@utils/enums';
 import { Router } from '@angular/router';
 import { CustomMessageService } from '@utils/services/custom-message.service';
 import { CoreService } from '@utils/services/core.service';
+import { MY_ROUTES } from '@routes';
 
 @Injectable({
     providedIn: 'root'
@@ -99,7 +100,8 @@ export class AuthService {
             case RoleEnum.ADMIN: {
                 break;
             }
-            case RoleEnum.AGREEMENT_ADMINISTRATOR: {
+            case RoleEnum.MANAGER: {
+                this._router.navigateByUrl(MY_ROUTES.dashboards.absolute);
                 break;
             }
             default: {
