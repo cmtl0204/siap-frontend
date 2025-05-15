@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withComponentInputBinding } from '@angular/router';
 import Theme from '@primeng/themes/material';
 import { providePrimeNG } from 'primeng/config';
 import { appRoutes } from './app.routes';
@@ -16,7 +16,8 @@ export const appConfig: ApplicationConfig = {
                 anchorScrolling: 'enabled',
                 scrollPositionRestoration: 'enabled'
             }),
-            withEnabledBlockingInitialNavigation()
+            withEnabledBlockingInitialNavigation(),
+            withComponentInputBinding()
         ),
         provideHttpClient(withFetch()),
         provideHttpClient(withInterceptors(HttpInterceptorProviders)),

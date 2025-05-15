@@ -2,18 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AuthService } from '@modules/auth/auth.service';
-import { HttpResponseInterface, PaginatorInterface } from '@modules/auth/interfaces';
+import { HttpResponseInterface } from '@modules/auth/interfaces';
 import { CustomMessageService } from '@utils/services/custom-message.service';
-import { CoreService } from '@utils/services/core.service';
-import { ProjectInterface } from '@modules/core/interfaces';
+import { ProgramInterface } from '@modules/core/interfaces/program.interface';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProjectHttpService {
+export class ProgramHttpService {
     private readonly _httpClient = inject(HttpClient);
-    private readonly _apiUrl = `${environment.API_URL}/core/manager/projects`;
+    private readonly _apiUrl = `${environment.API_URL}/core/manager/programs`;
     private readonly _customMessageService = inject(CustomMessageService);
 
     findAll(page: number = 1) {
@@ -57,7 +55,7 @@ export class ProjectHttpService {
         );
     }
 
-    create(payload: ProjectInterface) {
+    create(payload: ProgramInterface) {
         const url = `${this._apiUrl}`;
 
         return this._httpClient.post<HttpResponseInterface>(url, payload).pipe(
@@ -69,7 +67,7 @@ export class ProjectHttpService {
         );
     }
 
-    update(id: string, payload: ProjectInterface) {
+    update(id: string, payload: ProgramInterface) {
         const url = `${this._apiUrl}/${id}`;
 
         return this._httpClient.put<HttpResponseInterface>(url, payload).pipe(

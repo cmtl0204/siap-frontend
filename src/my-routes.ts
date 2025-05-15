@@ -23,21 +23,48 @@ export const MY_ROUTES = {
         }
     },
     corePages: {
-        base: 'pages/core',
-        absolute: '/pages/core',
+        base: 'core',
+        absolute: '/main/core',
         manager: {
             base: 'manager',
-            absolute: '/pages/core/manager',
+            absolute: '/main/core/manager',
             dashboard: {
                 base: 'dashboard',
-                absolute: '/pages/core/manager/dashboard'
+                absolute: '/main/core/manager/dashboard'
             },
             project: {
                 base: 'projects',
-                absolute: '/pages/core/manager/projects',
-                list: '/pages/core/manager/projects/list',
+                absolute: '/main/core/manager/projects',
+                list: {
+                    base: 'projects/list',
+                    absolute: '/main/core/manager/projects/list'
+                },
+                form: {
+                    base: 'projects/form',
+                    absolute: '/main/core/manager/projects/form'
+                },
+                document: {
+                    base: 'projects/document',
+                    absolute: '/main/core/manager/projects/document'
+                }
+            },
+            program: {
+                base: 'programs',
+                absolute: '/main/core/manager/programs',
+                list: {
+                    base: 'programs/list',
+                    absolute: '/main/core/manager/programs/list'
+                },
+                form: {
+                    base: 'programs/form',
+                    absolute: '/main/core/manager/programs/form'
+                },
+                document: {
+                    base: 'programs/document',
+                    absolute: '/main/core/manager/programs/document'
+                }
             }
-        },
+        }
     },
     authPages: {
         base: 'auth',
@@ -54,9 +81,9 @@ export const MY_ROUTES = {
             absolute: '/auth/password-reset'
         }
     },
-    login: '/auth/sign-in',
+    signIn: '/auth/sign-in',
     dashboards: {
-        base: 'pages/dashboards',
-        absolute: '/pages/dashboards',
-    },
+        base: 'dashboards',
+        absolute: '/main/dashboards'
+    }
 };

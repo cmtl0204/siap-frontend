@@ -1,7 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProjectInterface } from '@modules/core/interfaces';
-import { ProjectHttpService } from '@modules/core/manager/project/project-http.service';
 import { Fluid } from 'primeng/fluid';
 import { InputText } from 'primeng/inputtext';
 import { LabelDirective } from '@utils/directives/label.directive';
@@ -13,22 +11,22 @@ import { Textarea } from 'primeng/textarea';
 import { Button } from 'primeng/button';
 import { PrimeIcons } from 'primeng/api';
 import { CustomMessageService } from '@utils/services/custom-message.service';
-import { AuthHttpService } from '@modules/auth/auth-http.service';
 import { AuthService } from '@modules/auth/auth.service';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { MY_ROUTES } from '@routes';
+import { ProgramHttpService } from '@modules/core/manager/program/program-http.service';
 
 @Component({
-    selector: 'app-project-form',
+    selector: 'app-program-form',
     imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Textarea, Button],
-    templateUrl: './project-form.component.html',
-    styleUrl: './project-form.component.scss'
+    templateUrl: './program-form.component.html',
+    styleUrl: './program-form.component.scss'
 })
-export class ProjectFormComponent implements OnInit {
+export class ProgramFormComponent implements OnInit {
     @Input() id!: string;
     private readonly _formBuilder = inject(FormBuilder);
     private readonly _breadcrumbService = inject(BreadcrumbService);
-    private readonly _projectHttpService = inject(ProjectHttpService);
+    private readonly _programHttpService = inject(ProgramHttpService);
     protected readonly _authService = inject(AuthService);
     protected readonly _customMessageService = inject(CustomMessageService);
     protected form!: FormGroup;
@@ -36,8 +34,8 @@ export class ProjectFormComponent implements OnInit {
     constructor() {
         this._breadcrumbService.setItems([
             {
-                label: 'Proyectos',
-                routerLink: [MY_ROUTES.corePages.manager.project.list.absolute]
+                label: 'Programas',
+                routerLink: [MY_ROUTES.corePages.manager.program.list.absolute]
             },
             { label: 'Formulario' }
         ]);
@@ -46,7 +44,7 @@ export class ProjectFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.id != 'new') this.findProject();
+        if (this.id != 'new') this.findProgram();
     }
 
     buildForm() {
@@ -65,8 +63,8 @@ export class ProjectFormComponent implements OnInit {
         });
     }
 
-    findProject() {
-        this._projectHttpService.findOne(this.id).subscribe({
+    findProgram() {
+        this._programHttpService.findOne(this.id).subscribe({
             next: (response) => {
                 if (response) {
                     this.form.patchValue(response);
@@ -78,8 +76,8 @@ export class ProjectFormComponent implements OnInit {
 
     onSubmit() {
         if (this.validateForm()) {
-            if (this.id) this.updateProject();
-            else this.createProject();
+            if (this.id) this.updateProgram();
+            else this.createProgram();
         }
     }
 
@@ -105,12 +103,12 @@ export class ProjectFormComponent implements OnInit {
         return this.form.valid && errors.length === 0;
     }
 
-    createProject() {
-        this._projectHttpService.create(this.form.value).subscribe();
+    createProgram() {
+        this._programHttpService.create(this.form.value).subscribe();
     }
 
-    updateProject() {
-        this._projectHttpService.update(this.id, this.form.value).subscribe();
+    updateProgram() {
+        this._programHttpService.update(this.id, this.form.value).subscribe();
     }
 
     get codeField(): AbstractControl {

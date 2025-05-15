@@ -1,0 +1,184 @@
+<p-fluid>
+
+    <form [formGroup]="form" class="card flex flex-col gap-6 w-full">
+        <div class="font-semibold text-xl">Proyecto</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-3 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="code"
+                    label="Código"
+                    [required]="codeField">
+                </label>
+
+                <input pInputText type="text" id="code" formControlName="code" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="codeField.errors"
+                    [touched]="codeField.touched"
+                    [dirty]="codeField.dirty" />
+            </div>
+
+            <div class="md:col-span-9 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="name"
+                    label="Nombre del Proyecto"
+                    [required]="nameField">
+                </label>
+
+                <input pInputText type="text" id="name" formControlName="name" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="nameField.errors"
+                    [touched]="nameField.touched"
+                    [dirty]="nameField.dirty" />
+            </div>
+
+            <div class="md:col-span-2 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="amount"
+                    label="Monto"
+                    [required]="amountField">
+                </label>
+
+                <p-inputnumber mode="currency" currency="USD" formControlName="amount" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="amountField.errors"
+                    [touched]="amountField.touched"
+                    [dirty]="amountField.dirty" />
+            </div>
+
+            <div class="md:col-span-8 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="area"
+                    label="Área"
+                    [required]="areaField">
+                </label>
+
+                <input pInputText type="text" id="area" formControlName="area" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="areaField.errors"
+                    [touched]="areaField.touched"
+                    [dirty]="areaField.dirty" />
+            </div>
+
+            <div class="md:col-span-2 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="term"
+                    label="Plazo"
+                    [required]="termField">
+                </label>
+
+                <p-inputnumber [useGrouping]="false" formControlName="term" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="termField.errors"
+                    [touched]="termField.touched"
+                    [dirty]="termField.dirty" />
+            </div>
+
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="startedAt"
+                    label="Fecha de inicio"
+                    [required]="startedAtField">
+                </label>
+
+                <p-datepicker formControlName="startedAt" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="startedAtField.errors"
+                    [touched]="startedAtField.touched"
+                    [dirty]="startedAtField.dirty" />
+            </div>
+
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="endedAt"
+                    label="Fecha de finalización"
+                    [required]="endedAtField">
+                </label>
+
+                <p-datepicker formControlName="endedAt" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="endedAtField.errors"
+                    [touched]="endedAtField.touched"
+                    [dirty]="endedAtField.dirty" />
+            </div>
+
+            <div class="md:col-span-12 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="unit"
+                    label="Unidad ejecutora"
+                    [required]="unitField">
+                </label>
+
+                <textarea rows="5" cols="30" pTextarea formControlName="unit"></textarea>
+
+                <p-message
+                    appErrorMessage
+                    [errors]="unitField.errors"
+                    [touched]="unitField.touched"
+                    [dirty]="unitField.dirty" />
+            </div>
+
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="programCode"
+                    label="Código del programa"
+                    [required]="programCodeField">
+                </label>
+
+                <input pInputText type="text" id="programCode" formControlName="programCode" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="programCodeField.errors"
+                    [touched]="programCodeField.touched"
+                    [dirty]="programCodeField.dirty" />
+            </div>
+
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="program"
+                    label="Programa"
+                    [required]="programField">
+                </label>
+
+                <input pInputText type="text" id="program" formControlName="program" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="programField.errors"
+                    [touched]="programField.touched"
+                    [dirty]="programField.dirty" />
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-start-4 md:col-span-6 flex flex-col gap-2">
+                <p-button label="Guardar" [icon]="PrimeIcons.SAVE" (onClick)="onSubmit()" [disabled]="this.form.disabled"/>
+            </div>
+        </div>
+    </form>
+</p-fluid>

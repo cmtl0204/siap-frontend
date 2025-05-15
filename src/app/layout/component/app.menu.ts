@@ -31,9 +31,14 @@ export class AppMenu {
                 label: 'MINTUR',
                 items: [
                     {
+                        label: 'Programas',
+                        icon: PrimeIcons.BOOK,
+                        routerLink: [MY_ROUTES.corePages.manager.program.list.absolute]
+                    },
+                    {
                         label: 'Proyectos',
                         icon: PrimeIcons.BOOK,
-                        routerLink: [MY_ROUTES.corePages.manager.project.absolute]
+                        routerLink: [MY_ROUTES.corePages.manager.project.list.absolute]
                     }
                 ]
             },
