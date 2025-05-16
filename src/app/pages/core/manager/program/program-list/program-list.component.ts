@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { ProjectInterface } from '@modules/core/interfaces';
 import { CurrencyPipe } from '@angular/common';
 import { Button } from 'primeng/button';
 import { MenuItem, PrimeIcons } from 'primeng/api';
@@ -9,7 +10,6 @@ import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.serv
 import { Router } from '@angular/router';
 import { MY_ROUTES } from '@routes';
 import { Tooltip } from 'primeng/tooltip';
-import { ProgramInterface } from '@modules/core/interfaces/program.interface';
 import { ProgramHttpService } from '@modules/core/manager/program/program-http.service';
 
 @Component({
@@ -22,8 +22,8 @@ export class ProgramListComponent implements OnInit {
     private readonly _programHttpService = inject(ProgramHttpService);
     private readonly _breadcrumbService = inject(BreadcrumbService);
     private readonly _router = inject(Router);
-    protected items: ProgramInterface[] = [];
-    protected selectedItem!: ProgramInterface;
+    protected items: ProjectInterface[] = [];
+    protected selectedItem!: ProjectInterface;
     protected readonly PrimeIcons = PrimeIcons;
     protected isButtonActionsEnabled = false;
     protected buttonActions: MenuItem[] = [];
@@ -33,49 +33,43 @@ export class ProgramListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.findPrograms();
+        this.findProjects();
     }
 
-    findPrograms(page: number = 1) {
-        this._programHttpService.findAll(page).subscribe({
+    findProjects(page: number = 1) {
+        this._programHttpService.find(page).subscribe({
             next: (data) => {
                 this.items = data;
             }
         });
     }
 
-    selectItem(item: ProgramInterface) {
+    selectItem(item: ProjectInterface) {
         this.isButtonActionsEnabled = true;
         this.selectedItem = item;
         this.buildButtonActions(item);
     }
 
-    buildButtonActions(item: ProgramInterface) {
+    buildButtonActions(item: ProjectInterface) {
         this.buttonActions = [
             {
                 ...viewButtonAction,
                 command: () => {
-                    if (this.selectedItem?.id) this.redirectViewProgram(this.selectedItem.id);
+                    if (this.selectedItem?.id) this.redirectViewProject(this.selectedItem.id);
                 }
             },
-            {
-                ...documentButtonAction,
-                command: () => {
-                    if (this.selectedItem?.id) this.redirectProgramDocument(this.selectedItem.id);
-                }
-            }
         ];
     }
 
-    redirectViewProgram(id: string) {
-        this._router.navigateByUrl(`${MY_ROUTES.corePages.manager.program.form.absolute}/${id}`);
+    redirectViewProject(id: string) {
+        this._router.navigateByUrl(`${MY_ROUTES.corePages.manager.program.absolute}/${id}`);
     }
 
-    redirectProgramDocument(id: string) {
+    redirectProjectDocument(id: string) {
         this._router.navigateByUrl(`${MY_ROUTES.corePages.manager.program.document.absolute}/${id}`);
     }
 
-    redirectCreateProgram() {
+    redirectCreateProject() {
         this._router.navigateByUrl(`${MY_ROUTES.corePages.manager.program.form.absolute}/new`);
     }
 }

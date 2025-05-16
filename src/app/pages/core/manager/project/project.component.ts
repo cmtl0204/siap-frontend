@@ -1,13 +1,18 @@
-import { Component, inject } from '@angular/core';
-import { AuthService } from '@modules/auth/auth.service';
-import { ProjectListComponent } from '@modules/core/manager/project/project-list/project-list.component';
+import { Component, Input } from '@angular/core';
+import { Accordion, AccordionContent, AccordionHeader, AccordionPanel } from 'primeng/accordion';
+import { PrimeIcons } from 'primeng/api';
+import { ProjectFormComponent } from '@modules/core/manager/project/project-form/project-form.component';
+import { ProjectDocumentComponent } from '@modules/core/manager/project/project-document/project-document.component';
 
 @Component({
     selector: 'app-project',
-    imports: [ProjectListComponent],
+    imports: [Accordion, AccordionContent, AccordionHeader, AccordionPanel, ProjectFormComponent, ProjectDocumentComponent],
     templateUrl: './project.component.html',
     styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
-    protected readonly authService = inject(AuthService);
+    @Input({ required: true, alias: 'id' }) projectId!: string;
+    protected readonly PrimeIcons = PrimeIcons;
+
+    constructor() {}
 }

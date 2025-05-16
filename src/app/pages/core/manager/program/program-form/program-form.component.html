@@ -1,14 +1,14 @@
 <p-fluid>
-
     <form [formGroup]="form" class="card flex flex-col gap-6 w-full">
         <div class="font-semibold text-xl">Proyecto</div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-3 flex flex-col gap-2">
+            <!-- code -->
+            <div class="md:col-span-4 flex flex-col gap-2">
                 <label
                     appLabel
                     for="code"
-                    label="Código"
+                    label="Código del proyecto institucional CPI"
                     [required]="codeField">
                 </label>
 
@@ -21,7 +21,8 @@
                     [dirty]="codeField.dirty" />
             </div>
 
-            <div class="md:col-span-9 flex flex-col gap-2">
+            <!-- name -->
+            <div class="md:col-span-8 flex flex-col gap-2">
                 <label
                     appLabel
                     for="name"
@@ -38,11 +39,12 @@
                     [dirty]="nameField.dirty" />
             </div>
 
-            <div class="md:col-span-2 flex flex-col gap-2">
+            <!-- amount -->
+            <div class="md:col-span-4 flex flex-col gap-2">
                 <label
                     appLabel
                     for="amount"
-                    label="Monto"
+                    label="Monto total del proyecto"
                     [required]="amountField">
                 </label>
 
@@ -55,28 +57,30 @@
                     [dirty]="amountField.dirty" />
             </div>
 
+            <!-- executorUndersecretary -->
             <div class="md:col-span-8 flex flex-col gap-2">
                 <label
                     appLabel
-                    for="area"
-                    label="Área"
-                    [required]="areaField">
+                    for="executorUndersecretary"
+                    label="Subsecretarías ejecutoras"
+                    [required]="executorUndersecretaryField">
                 </label>
 
-                <input pInputText type="text" id="area" formControlName="area" />
+                <input pInputText type="text" id="executorUndersecretary" formControlName="executorUndersecretary" />
 
                 <p-message
                     appErrorMessage
-                    [errors]="areaField.errors"
-                    [touched]="areaField.touched"
-                    [dirty]="areaField.dirty" />
+                    [errors]="executorUndersecretaryField.errors"
+                    [touched]="executorUndersecretaryField.touched"
+                    [dirty]="executorUndersecretaryField.dirty" />
             </div>
 
-            <div class="md:col-span-2 flex flex-col gap-2">
+            <!-- term -->
+            <div class="md:col-span-4 flex flex-col gap-2">
                 <label
                     appLabel
                     for="term"
-                    label="Plazo"
+                    label="Plazo de ejecución del proyecto (meses)"
                     [required]="termField">
                 </label>
 
@@ -89,11 +93,12 @@
                     [dirty]="termField.dirty" />
             </div>
 
-            <div class="md:col-span-6 flex flex-col gap-2">
+            <!-- startedAt -->
+            <div class="md:col-span-4 flex flex-col gap-2">
                 <label
                     appLabel
                     for="startedAt"
-                    label="Fecha de inicio"
+                    label="Fecha inicio"
                     [required]="startedAtField">
                 </label>
 
@@ -106,11 +111,12 @@
                     [dirty]="startedAtField.dirty" />
             </div>
 
-            <div class="md:col-span-6 flex flex-col gap-2">
+            <!-- endedAt -->
+            <div class="md:col-span-4 flex flex-col gap-2">
                 <label
                     appLabel
                     for="endedAt"
-                    label="Fecha de finalización"
+                    label="Fecha fin"
                     [required]="endedAtField">
                 </label>
 
@@ -122,62 +128,12 @@
                     [touched]="endedAtField.touched"
                     [dirty]="endedAtField.dirty" />
             </div>
-
-            <div class="md:col-span-12 flex flex-col gap-2">
-                <label
-                    appLabel
-                    for="unit"
-                    label="Unidad ejecutora"
-                    [required]="unitField">
-                </label>
-
-                <textarea rows="5" cols="30" pTextarea formControlName="unit"></textarea>
-
-                <p-message
-                    appErrorMessage
-                    [errors]="unitField.errors"
-                    [touched]="unitField.touched"
-                    [dirty]="unitField.dirty" />
-            </div>
-
-            <div class="md:col-span-6 flex flex-col gap-2">
-                <label
-                    appLabel
-                    for="programCode"
-                    label="Código del programa"
-                    [required]="programCodeField">
-                </label>
-
-                <input pInputText type="text" id="programCode" formControlName="programCode" />
-
-                <p-message
-                    appErrorMessage
-                    [errors]="programCodeField.errors"
-                    [touched]="programCodeField.touched"
-                    [dirty]="programCodeField.dirty" />
-            </div>
-
-            <div class="md:col-span-6 flex flex-col gap-2">
-                <label
-                    appLabel
-                    for="program"
-                    label="Programa"
-                    [required]="programField">
-                </label>
-
-                <input pInputText type="text" id="program" formControlName="program" />
-
-                <p-message
-                    appErrorMessage
-                    [errors]="programField.errors"
-                    [touched]="programField.touched"
-                    [dirty]="programField.dirty" />
-            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div class="md:col-start-4 md:col-span-6 flex flex-col gap-2">
-                <p-button label="Guardar" [icon]="PrimeIcons.SAVE" (onClick)="onSubmit()" [disabled]="this.form.disabled"/>
+                <p-button label="Guardar" [icon]="PrimeIcons.SAVE" (onClick)="onSubmit()"
+                          [disabled]="this.form.disabled" />
             </div>
         </div>
     </form>

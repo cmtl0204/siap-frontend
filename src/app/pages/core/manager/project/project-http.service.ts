@@ -2,10 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AuthService } from '@modules/auth/auth.service';
-import { HttpResponseInterface, PaginatorInterface } from '@modules/auth/interfaces';
+import { HttpResponseInterface } from '@modules/auth/interfaces';
 import { CustomMessageService } from '@utils/services/custom-message.service';
-import { CoreService } from '@utils/services/core.service';
 import { ProjectInterface } from '@modules/core/interfaces';
 
 @Injectable({
@@ -33,16 +31,6 @@ export class ProjectHttpService {
 
         return this._httpClient.get<HttpResponseInterface>(url).pipe(
             map((response) => {
-                return response.data;
-            })
-        );
-    }
-
-    findByUser(userId: string) {
-        const url = `${this._apiUrl}/users/${userId}`;
-
-        return this._httpClient.get<HttpResponseInterface>(url).pipe(
-            map((response) => {
                 const data = response.data;
 
                 const startedAt = data?.startedAt ? new Date(data.startedAt) : null;
@@ -53,6 +41,16 @@ export class ProjectHttpService {
                     startedAt,
                     endedAt
                 };
+            })
+        );
+    }
+
+    findProjectsByUser(userId: string) {
+        const url = `${this._apiUrl}/users/${userId}`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
+                return response.data;
             })
         );
     }
@@ -88,6 +86,36 @@ export class ProjectHttpService {
             map((response) => {
                 this._customMessageService.showSuccess({ summary: response.title, detail: response.message });
 
+                return response.data;
+            })
+        );
+    }
+
+    findTechnicalFeasibilityDocuments(id: string) {
+        const url = `${this._apiUrl}/${id}/technical-feasibility-documents`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
+                return response.data;
+            })
+        );
+    }
+
+    findApprovalDocuments(id: string) {
+        const url = `${this._apiUrl}/${id}/approval-documents`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
+                return response.data;
+            })
+        );
+    }
+
+    findProgramDocuments(id: string) {
+        const url = `${this._apiUrl}/${id}/program-documents`;
+
+        return this._httpClient.get<HttpResponseInterface>(url).pipe(
+            map((response) => {
                 return response.data;
             })
         );

@@ -1,24 +1,24 @@
-import { PaginatorInterface } from '@modules/auth/interfaces/paginator.interface';
+import { PaginatorInterface } from '@utils/interfaces';
 
 export interface HttpResponseInterface {
-  data: any;
-  pagination?: PaginatorInterface;
-  error?: string;
-  message: string;
-  detail: string;
-  statusCode: number;
-  title: string;
-  version?: string;
+    data: any;
+    pagination?: PaginatorInterface;
+    error?: string;
+    message: string;
+    detail: string;
+    statusCode: number;
+    title: string;
+    version?: string;
 }
 
 export interface ServerResponsePaginator extends HttpResponseInterface {
-  meta: PaginatorInterface;
-  links?: Links;
+    meta: PaginatorInterface;
+    links?: Links;
 }
 
 interface Links {
-  first: string;
-  last: string;
-  prev: string;
-  next: string;
+    first: string;
+    last: string;
+    prev: string;
+    next: string;
 }

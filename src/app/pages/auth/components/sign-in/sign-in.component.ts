@@ -76,7 +76,6 @@ export default class SignInComponent {
         if (this.usernameField.invalid) this.formErrors.push('Correo Electrónico');
         if (this.passwordField.invalid) this.formErrors.push('Contraseña');
 
-        console.log(this.formErrors);
         return this.formErrors.length === 0 && this.form.valid;
     }
 

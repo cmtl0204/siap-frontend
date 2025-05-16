@@ -11,7 +11,6 @@ export const tokenGuard: CanActivateFn = (route, state) => {
         return true;
     }
 
-    console.log('entro');
     router.navigateByUrl(MY_ROUTES.signIn);
     authService.removeLogin();
 

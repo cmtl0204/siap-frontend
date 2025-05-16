@@ -8,6 +8,7 @@ import { SignInResponseInterface } from '@modules/auth/interfaces';
 import { CustomMessageService } from '@utils/services/custom-message.service';
 import { CoreService } from '@utils/services/core.service';
 import { Observable } from 'rxjs';
+import { CatalogueHttpService } from '@utils/services';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,7 @@ export class AuthHttpService {
     private readonly _authService = inject(AuthService);
     private readonly _httpClient = inject(HttpClient);
     private readonly _apiUrl = `${environment.API_URL}/auth`;
+    private readonly _catalogueHttpService = inject(CatalogueHttpService);
     private readonly _coreService = inject(CoreService);
     private readonly _customMessageService = inject(CustomMessageService);
 
@@ -35,6 +37,12 @@ export class AuthHttpService {
                 }
 
                 this._customMessageService.showSuccess({ summary: response.title, detail: response.message });
+
+                this._catalogueHttpService.findCache().subscribe({
+                    next: (data) => {
+                        sessionStorage.setItem('catalogues', JSON.stringify(data));
+                    }
+                });
 
                 return response.data;
             })

@@ -1,6 +1,6 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProjectInterface } from '@modules/core/interfaces';
+import { ProgramInterface, ProjectInterface } from '@modules/core/interfaces';
 import { ProjectHttpService } from '@modules/core/manager/project/project-http.service';
 import { Fluid } from 'primeng/fluid';
 import { InputText } from 'primeng/inputtext';
@@ -17,21 +17,28 @@ import { AuthHttpService } from '@modules/auth/auth-http.service';
 import { AuthService } from '@modules/auth/auth.service';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { MY_ROUTES } from '@routes';
+import { ProgramHttpService } from '@modules/core/manager/program/program-http.service';
+import { Select } from 'primeng/select';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-project-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Textarea, Button],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Textarea, Button, Select],
     templateUrl: './project-form.component.html',
     styleUrl: './project-form.component.scss'
 })
-export class ProjectFormComponent implements OnInit {
-    @Input() id!: string;
+export class ProjectFormComponent implements OnInit, OnChanges {
+    @Input() id!: string | undefined;
     private readonly _formBuilder = inject(FormBuilder);
+    protected readonly _router = inject(Router);
     private readonly _breadcrumbService = inject(BreadcrumbService);
+    private readonly _programHttpService = inject(ProgramHttpService);
     private readonly _projectHttpService = inject(ProjectHttpService);
     protected readonly _authService = inject(AuthService);
     protected readonly _customMessageService = inject(CustomMessageService);
     protected form!: FormGroup;
+    protected programs: ProgramInterface[] = [];
+    protected readonly PrimeIcons = PrimeIcons;
 
     constructor() {
         this._breadcrumbService.setItems([
@@ -46,27 +53,35 @@ export class ProjectFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.id != 'new') this.findProject();
+        this.findPrograms();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['id'] && this.id && this.id !== 'new') {
+            this.findProject();
+        } else if (this.id === 'new') {
+            this.form.enable(); // si quieres permitir edición
+        }
     }
 
     buildForm() {
         this.form = this._formBuilder.group({
             user: [this._authService.auth, [Validators.required]],
+            program: [null, [Validators.required]],
+            amount: [null, [Validators.required]],
             code: [null, [Validators.required]],
             name: [null, [Validators.required]],
-            amount: [null, [Validators.required]],
-            area: [null, [Validators.required]],
+            coexecutorManagement: [null, [Validators.required]],
+            executorManagement: [null, [Validators.required]],
+            executorUndersecretary: [null, [Validators.required]],
             term: [null, [Validators.required]],
             startedAt: [null, [Validators.required]],
-            endedAt: [null, [Validators.required]],
-            unit: [null, [Validators.required]],
-            program: [null, [Validators.required]],
-            programCode: [null, [Validators.required]]
+            endedAt: [null, [Validators.required]]
         });
     }
 
     findProject() {
-        this._projectHttpService.findOne(this.id).subscribe({
+        this._projectHttpService.findOne(this.id!).subscribe({
             next: (response) => {
                 if (response) {
                     this.form.patchValue(response);
@@ -76,26 +91,34 @@ export class ProjectFormComponent implements OnInit {
         });
     }
 
+    findPrograms() {
+        this._programHttpService.findAll().subscribe({
+            next: (data) => {
+                this.programs = data;
+            }
+        });
+    }
+
     onSubmit() {
         if (this.validateForm()) {
-            if (this.id) this.updateProject();
-            else this.createProject();
+            if (this.id === 'new') this.createProject();
+            else this.updateProject();
         }
     }
 
     validateForm() {
         const errors: string[] = [];
 
-        if (this.codeField.invalid) errors.push('Código');
         if (this.nameField.invalid) errors.push('Nombre del Proyecto');
-        if (this.amountField.invalid) errors.push('Monto');
-        if (this.areaField.invalid) errors.push('Área');
-        if (this.termField.invalid) errors.push('Plazo');
-        if (this.startedAtField.invalid) errors.push('Fecha de inicio');
-        if (this.endedAtField.invalid) errors.push('Fecha de finalización');
-        if (this.unitField.invalid) errors.push('Unidades ejecutoras');
+        if (this.codeField.invalid) errors.push('Código del proyecto institucional CPI');
+        if (this.amountField.invalid) errors.push('Monto total del proyecto');
+        if (this.executorUndersecretaryField.invalid) errors.push('Subsecretaría ejecutora');
+        if (this.termField.invalid) errors.push('Plazo de ejecución del proyecto');
+        if (this.startedAtField.invalid) errors.push('Fecha inicio');
+        if (this.endedAtField.invalid) errors.push('Fecha fin');
+        if (this.executorManagementField.invalid) errors.push('Direcciones ejecutoras');
         if (this.programField.invalid) errors.push('Programa');
-        if (this.programCodeField.invalid) errors.push('Código de Programa');
+        if (this.coexecutorManagementField.invalid) errors.push('Direcciones o entidades co-ejecutoras');
 
         if (errors.length > 0) {
             this.form.markAllAsTouched();
@@ -106,11 +129,15 @@ export class ProjectFormComponent implements OnInit {
     }
 
     createProject() {
-        this._projectHttpService.create(this.form.value).subscribe();
+        this._projectHttpService.create(this.form.value).subscribe({
+            next: (data) => {
+                this._router.navigateByUrl(MY_ROUTES.corePages.manager.project.list.absolute);
+            }
+        });
     }
 
     updateProject() {
-        this._projectHttpService.update(this.id, this.form.value).subscribe();
+        this._projectHttpService.update(this.id!, this.form.value).subscribe();
     }
 
     get codeField(): AbstractControl {
@@ -125,8 +152,8 @@ export class ProjectFormComponent implements OnInit {
         return this.form.controls['amount'];
     }
 
-    get areaField(): AbstractControl {
-        return this.form.controls['area'];
+    get coexecutorManagementField(): AbstractControl {
+        return this.form.controls['coexecutorManagement'];
     }
 
     get termField(): AbstractControl {
@@ -141,17 +168,15 @@ export class ProjectFormComponent implements OnInit {
         return this.form.controls['endedAt'];
     }
 
-    get unitField(): AbstractControl {
-        return this.form.controls['unit'];
+    get executorManagementField(): AbstractControl {
+        return this.form.controls['executorManagement'];
     }
 
     get programField(): AbstractControl {
         return this.form.controls['program'];
     }
 
-    get programCodeField(): AbstractControl {
-        return this.form.controls['programCode'];
+    get executorUndersecretaryField(): AbstractControl {
+        return this.form.controls['executorUndersecretary'];
     }
-
-    protected readonly PrimeIcons = PrimeIcons;
 }
