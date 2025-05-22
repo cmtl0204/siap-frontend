@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProgramInterface, ProjectInterface } from '@modules/core/interfaces';
+import { ProgramInterface } from '@modules/core/interfaces';
 import { ProjectHttpService } from '@modules/core/manager/project/project-http.service';
 import { Fluid } from 'primeng/fluid';
 import { InputText } from 'primeng/inputtext';
@@ -9,11 +9,9 @@ import { ErrorMessageDirective } from '@utils/directives/error-message.directive
 import { Message } from 'primeng/message';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { Textarea } from 'primeng/textarea';
 import { Button } from 'primeng/button';
 import { PrimeIcons } from 'primeng/api';
 import { CustomMessageService } from '@utils/services/custom-message.service';
-import { AuthHttpService } from '@modules/auth/auth-http.service';
 import { AuthService } from '@modules/auth/auth.service';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { MY_ROUTES } from '@routes';
@@ -23,7 +21,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-project-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Textarea, Button, Select],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Select],
     templateUrl: './project-form.component.html',
     styleUrl: './project-form.component.scss'
 })
