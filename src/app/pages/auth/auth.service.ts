@@ -96,17 +96,6 @@ export class AuthService {
     }
 
     selectDashboard() {
-        switch (this.role.code) {
-            case RoleEnum.ADMIN: {
-                break;
-            }
-            case RoleEnum.MANAGER: {
-                this._router.navigateByUrl(MY_ROUTES.dashboards.absolute);
-                break;
-            }
-            default: {
-                console.log('no tiene roles');
-            }
-        }
+        this._router.navigateByUrl(MY_ROUTES.dashboards.absolute);
     }
 }

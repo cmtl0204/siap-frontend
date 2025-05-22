@@ -1,0 +1,182 @@
+<p-accordion [(value)]="activeIndex">
+    <p-accordion-panel value="1">
+        <p-accordion-header>
+            <span class="flex items-center gap-2 w-full">
+                <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
+
+                <span class="font-bold whitespace-nowrap">Viabilidad Técnica</span>
+
+                <p-fileupload
+                    mode="basic"
+                    name="file"
+                    chooseIcon="pi pi-upload"
+                    accept=".pdf"
+                    maxFileSize="1000000"
+                    (uploadHandler)="uploadTechnicalFeasibilityDocument($event)"
+                    [customUpload]="true"
+                    [auto]="true"
+                    chooseLabel="Cargar archivo" />
+            </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+            <p class="m-0">
+                <p-table [value]="technicalFeasibilityDocuments" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha de carga</th>
+                            <th>Usuario</th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template #body let-item>
+                        <tr>
+                            <td>{{ item.originalName }}</td>
+                            <td>{{ item.updatedAt | date}}</td>
+                            <td>{{ item.user.name }}</td>
+                            <td>
+                                <p-button
+                                    [icon]="PrimeIcons.DOWNLOAD"
+                                    severity="info"
+                                    pTooltip="Descargar"
+                                    (onClick)="download(item)"
+                                />
+
+<!--                                <p-button-->
+<!--                                    [icon]="PrimeIcons.TRASH"-->
+<!--                                    severity="danger"-->
+<!--                                    pTooltip="Eliminar"-->
+<!--                                    class="ml-2" />-->
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p>
+        </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="2">
+        <p-accordion-header>
+            <span class="flex items-center gap-2 w-full">
+                <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
+
+                <span class="font-bold whitespace-nowrap">Aprobación</span>
+
+                <p-fileupload
+                    mode="basic"
+                    name="file"
+                    chooseIcon="pi pi-upload"
+                    accept=".pdf"
+                    maxFileSize="1000000"
+                    (uploadHandler)="uploadApprovalDocument($event)"
+                    [customUpload]="true"
+                    [auto]="true"
+                    chooseLabel="Cargar archivo" />
+            </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+            <p class="m-0">
+                <p-table [value]="approvalDocuments" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha de carga</th>
+                            <th>Usuario</th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template #body let-item>
+                        <tr>
+                            <td>{{ item.originalName }}</td>
+                            <td>{{ item.updatedAt | date}}</td>
+                            <td>{{ item.user.name }}</td>
+                            <td>
+                                <p-button
+                                    [icon]="PrimeIcons.DOWNLOAD"
+                                    severity="info"
+                                    pTooltip="Descargar"
+                                    (onClick)="download(item)"
+                                />
+
+<!--                                <p-button-->
+<!--                                    [icon]="PrimeIcons.TRASH"-->
+<!--                                    severity="danger"-->
+<!--                                    pTooltip="Eliminar"-->
+<!--                                    class="ml-2" />-->
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p>
+        </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="3">
+        <p-accordion-header>
+            <span class="flex items-center gap-2 w-full">
+                <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
+
+                <span class="font-bold whitespace-nowrap">Documentos del programa</span>
+
+                <p-fileupload
+                    mode="basic"
+                    name="file"
+                    chooseIcon="pi pi-upload"
+                    accept=".pdf"
+                    maxFileSize="1000000"
+                    (uploadHandler)="uploadProgramDocument($event)"
+                    [customUpload]="true"
+                    [auto]="true"
+                    chooseLabel="Cargar archivo" />
+            </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+            <p class="m-0">
+                <p-table [value]="programDocuments" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha de carga</th>
+                            <th>Usuario</th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template #body let-item>
+                        <tr>
+                            <td>{{ item.originalName }}</td>
+                            <td>{{ item.updatedAt | date}}</td>
+                            <td>{{ item.user.name }}</td>
+                            <td>
+                                <p-button
+                                    [icon]="PrimeIcons.DOWNLOAD"
+                                    severity="info"
+                                    pTooltip="Descargar"
+                                    (onClick)="download(item)"
+                                />
+
+<!--                                <p-button-->
+<!--                                    [icon]="PrimeIcons.TRASH"-->
+<!--                                    severity="danger"-->
+<!--                                    pTooltip="Eliminar"-->
+<!--                                    class="ml-2" />-->
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p>
+        </p-accordion-content>
+    </p-accordion-panel>
+</p-accordion>
+

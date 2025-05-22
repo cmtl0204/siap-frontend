@@ -47,7 +47,9 @@ import { AuthService } from '@modules/auth/auth.service';
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    <p-button type="button" [text]="true" [raised]="true" [label]="_authService.auth.username" [icon]="PrimeIcons.USER" />
+                    <p-button type="button" [text]="true" [label]="_authService.auth.username" [icon]="PrimeIcons.USER" />
+
+                    <p-button type="button" [text]="true" [label]="_authService.role.name" [icon]="PrimeIcons.SHIELD" />
 
                     <p-button (onClick)="signOut()" type="button" [text]="true" [raised]="true" severity="danger" label="Cerrar Sesión" [icon]="PrimeIcons.POWER_OFF" />
                 </div>

@@ -1,0 +1,24 @@
+<p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+        <tr>
+            <th>Nombre del plan estratégico</th>
+            <th>
+                <p-button pTooltip="Crear" [icon]="PrimeIcons.PLUS" severity="success"
+                          (onClick)="redirectCreateProject()" />
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-item>
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>
+                <app-button-action
+                    [buttonActions]="buttonActions"
+                    [enabled]="isButtonActionsEnabled"
+                    (isHide)="isButtonActionsEnabled=$event"
+                    (click)="selectItem(item)">
+                </app-button-action>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

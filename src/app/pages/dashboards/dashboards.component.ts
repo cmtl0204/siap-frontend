@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ManagerDashboardComponent } from '@modules/core/manager/manager-dashboard/manager-dashboard.component';
+import { OperatorDashboardComponent } from '@modules/core/operator/operator-dashboard/operator-dashboard.component';
 import { AuthService } from '@modules/auth/auth.service';
 import { RoleEnum } from '@utils/enums';
 import { AdminDashboardComponent } from '@modules/core/admin/admin-dashboard/admin-dashboard.component';
@@ -7,7 +7,7 @@ import { BreadcrumbService } from '../../layout/service/breadcrumb.service';
 
 @Component({
     selector: 'app-dashboards',
-    imports: [ManagerDashboardComponent, AdminDashboardComponent],
+    imports: [OperatorDashboardComponent, AdminDashboardComponent],
     templateUrl: './dashboards.component.html',
     styleUrl: './dashboards.component.scss'
 })

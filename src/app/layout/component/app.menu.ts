@@ -43,14 +43,19 @@ export class AppMenu implements OnInit {
                 label: 'MINTUR',
                 items: [
                     {
+                        label: 'Planes Estratégicos',
+                        icon: PrimeIcons.SITEMAP,
+                        routerLink: [MY_ROUTES.corePages.operator.strategicPlan.list.absolute]
+                    },
+                    {
                         label: 'Programas',
                         icon: PrimeIcons.LIST,
-                        routerLink: [MY_ROUTES.corePages.manager.program.list.absolute]
+                        routerLink: [MY_ROUTES.corePages.operator.program.list.absolute]
                     },
                     {
                         label: 'Proyectos',
                         icon: PrimeIcons.LIST_CHECK,
-                        routerLink: [MY_ROUTES.corePages.manager.project.list.absolute]
+                        routerLink: [MY_ROUTES.corePages.operator.project.list.absolute]
                     }
                 ]
             }
