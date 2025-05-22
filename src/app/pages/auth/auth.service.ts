@@ -80,9 +80,6 @@ export class AuthService {
     }
 
     removeLogin() {
-        localStorage.clear();
-        sessionStorage.clear();
-
         this._coreService.showProcessing();
 
         setTimeout(() => {
@@ -91,6 +88,10 @@ export class AuthService {
             if (this.accessToken) {
                 this._customMessageService.showInfo({ summary: 'Se cerró la sesión correctamente', detail: '' });
             }
+
+            this._router.navigateByUrl(MY_ROUTES.signIn);
+            localStorage.clear();
+            sessionStorage.clear();
         }, 500);
     }
 

@@ -16,25 +16,21 @@ export const authenticationInterceptor: HttpInterceptorFn = (req, next) => {
             // Cuando el usuario no está autenticado
             if (error.status === 401) {
                 _authService.removeLogin();
-                _router.navigateByUrl('/auth/sign-in');
             }
 
             // Cuando el usuario no tiene permisos para acceder al recurso solicitado y se encuentra logueado
             if (error.status === 403 && _authService.accessToken) {
                 _authService.removeLogin();
-                _router.navigate(['/login']);
             }
 
             // Cuando el usuario no tiene permisos para acceder al recurso solicitado y no está logueado
             if (error.status === 403 && !_authService.accessToken) {
                 _authService.removeLogin();
-                _router.navigate(['/login']);
             }
 
             // Cuando el usuario está suspendido
             if (error.status === 429) {
                 _authService.removeLogin();
-                _router.navigate(['/login']);
             }
 
             // Cuando la aplicación o una ruta está en mantenimiento
