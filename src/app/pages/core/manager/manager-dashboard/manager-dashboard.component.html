@@ -1,1 +1,13 @@
-asd
+<p-fluid>
+    <div class="card flex flex-col gap-6 w-full">
+        <div class="font-semibold text-xl">Proyecto</div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <p-chart type="pie" [data]="data" [options]="options" />
+            </div>
+            <div class="md:col-span-6 flex flex-col gap-2">
+                <p-chart type="bar" [data]="data" [options]="options" />
+            </div>
+        </div>
+    </div>
+</p-fluid>

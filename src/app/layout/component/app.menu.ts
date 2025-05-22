@@ -44,12 +44,12 @@ export class AppMenu implements OnInit {
                 items: [
                     {
                         label: 'Programas',
-                        icon: PrimeIcons.BOOK,
+                        icon: PrimeIcons.LIST,
                         routerLink: [MY_ROUTES.corePages.manager.program.list.absolute]
                     },
                     {
                         label: 'Proyectos',
-                        icon: PrimeIcons.BOOK,
+                        icon: PrimeIcons.LIST_CHECK,
                         routerLink: [MY_ROUTES.corePages.manager.project.list.absolute]
                     }
                 ]
