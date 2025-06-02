@@ -1,0 +1,32 @@
+<p-accordion>
+    <p-accordion-panel value="1">
+        <p-accordion-header>
+            <span class="flex items-center gap-2 w-full">
+                <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
+                <span class="font-bold whitespace-nowrap">Datos generales</span>
+            </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+            <p class="m-0">
+                <app-strategic-plan-form [id]="strategicPlanId" />
+            </p>
+        </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="2">
+        <p-accordion-header>
+            <span class="flex items-center gap-2 w-full">
+                <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
+                <span class="font-bold whitespace-nowrap">Documentos</span>
+            </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+            <p class="m-0">
+                <app-strategic-plan-document [strategicPlanId]="strategicPlanId"/>
+            </p>
+        </p-accordion-content>
+    </p-accordion-panel>
+</p-accordion>
+

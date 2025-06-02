@@ -1,0 +1,33 @@
+<p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+        <tr>
+            <th>Código interno del programa CIP</th>
+            <th>Nombre del programa</th>
+            <th>Monto total del programa</th>
+            <th>Subsecretarías ejecutoras</th>
+            <th>Plazo de ejecución del programa</th>
+            <th>
+                <p-button pTooltip="Crear" [icon]="PrimeIcons.PLUS" severity="success"
+                          (onClick)="redirectCreateProject()" />
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+        <tr>
+            <td>{{ item.code }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.amount |  currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ item.executorUndersecretary }}</td>
+            <td>{{ item.term }}</td>
+            <td>
+                <app-button-action
+                    [buttonActions]="buttonActions"
+                    [enabled]="isButtonActionsEnabled"
+                    (isHide)="isButtonActionsEnabled=$event"
+                    (click)="selectItem(item)">
+                </app-button-action>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

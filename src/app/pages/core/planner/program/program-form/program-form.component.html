@@ -1,0 +1,140 @@
+<p-fluid>
+    <form [formGroup]="form" class="card flex flex-col gap-6 w-full">
+        <div class="font-semibold text-xl">Programa</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <!-- code -->
+            <div class="md:col-span-4 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="code"
+                    label="Código del programa institucional CPI"
+                    [required]="codeField">
+                </label>
+
+                <input pInputText type="text" id="code" formControlName="code" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="codeField.errors"
+                    [touched]="codeField.touched"
+                    [dirty]="codeField.dirty" />
+            </div>
+
+            <!-- name -->
+            <div class="md:col-span-8 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="name"
+                    label="Nombre del programa"
+                    [required]="nameField">
+                </label>
+
+                <input pInputText type="text" id="name" formControlName="name" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="nameField.errors"
+                    [touched]="nameField.touched"
+                    [dirty]="nameField.dirty" />
+            </div>
+
+            <!-- amount -->
+            <div class="md:col-span-4 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="amount"
+                    label="Monto total del programa"
+                    [required]="amountField">
+                </label>
+
+                <p-inputnumber mode="currency" currency="USD" formControlName="amount" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="amountField.errors"
+                    [touched]="amountField.touched"
+                    [dirty]="amountField.dirty" />
+            </div>
+
+            <!-- executorUndersecretary -->
+            <div class="md:col-span-8 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="executorUndersecretary"
+                    label="Subsecretarías ejecutoras"
+                    [required]="executorUndersecretaryField">
+                </label>
+
+                <input pInputText type="text" id="executorUndersecretary" formControlName="executorUndersecretary" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="executorUndersecretaryField.errors"
+                    [touched]="executorUndersecretaryField.touched"
+                    [dirty]="executorUndersecretaryField.dirty" />
+            </div>
+
+            <!-- term -->
+            <div class="md:col-span-4 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="term"
+                    label="Plazo de ejecución del programa (meses)"
+                    [required]="termField">
+                </label>
+
+                <p-inputnumber [useGrouping]="false" formControlName="term" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="termField.errors"
+                    [touched]="termField.touched"
+                    [dirty]="termField.dirty" />
+            </div>
+
+            <!-- startedAt -->
+            <div class="md:col-span-4 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="startedAt"
+                    label="Fecha inicio"
+                    [required]="startedAtField">
+                </label>
+
+                <p-datepicker formControlName="startedAt" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="startedAtField.errors"
+                    [touched]="startedAtField.touched"
+                    [dirty]="startedAtField.dirty" />
+            </div>
+
+            <!-- endedAt -->
+            <div class="md:col-span-4 flex flex-col gap-2">
+                <label
+                    appLabel
+                    for="endedAt"
+                    label="Fecha fin"
+                    [required]="endedAtField">
+                </label>
+
+                <p-datepicker formControlName="endedAt" />
+
+                <p-message
+                    appErrorMessage
+                    [errors]="endedAtField.errors"
+                    [touched]="endedAtField.touched"
+                    [dirty]="endedAtField.dirty" />
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-start-4 md:col-span-6 flex flex-col gap-2">
+                <p-button label="Guardar" [icon]="PrimeIcons.SAVE" (onClick)="onSubmit()"
+                          [disabled]="this.form.disabled" />
+            </div>
+        </div>
+    </form>
+</p-fluid>

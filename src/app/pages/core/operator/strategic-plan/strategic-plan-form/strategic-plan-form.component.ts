@@ -55,8 +55,7 @@ export class StrategicPlanFormComponent implements OnInit, OnChanges {
 
     buildForm() {
         this.form = this._formBuilder.group({
-            code: [null, [Validators.required]],
-            name: [null, [Validators.required]],
+            name: [null, [Validators.required]]
         });
     }
 
@@ -81,7 +80,6 @@ export class StrategicPlanFormComponent implements OnInit, OnChanges {
     validateForm() {
         const errors: string[] = [];
 
-        if (this.codeField.invalid) errors.push('Código');
         if (this.nameField.invalid) errors.push('Nombre del Proyecto');
 
         if (errors.length > 0) {
@@ -102,10 +100,6 @@ export class StrategicPlanFormComponent implements OnInit, OnChanges {
 
     updateStrategicPlan() {
         this._strategicPlanHttpService.update(this.id!, this.form.value).subscribe();
-    }
-
-    get codeField(): AbstractControl {
-        return this.form.controls['code'];
     }
 
     get nameField(): AbstractControl {

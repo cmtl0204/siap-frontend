@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MenuItem,PrimeIcons } from 'primeng/api';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
@@ -12,7 +12,7 @@ import { AuthService } from '@modules/auth/auth.service';
 @Component({
     selector: 'app-topbar',
     standalone: true,
-    imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator, Button],
+    imports: [RouterModule, CommonModule, StyleClassModule, Button],
     template: ` <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
@@ -71,5 +71,6 @@ export class AppTopbar {
     signOut() {
         this._authService.removeLogin();
     }
+
     protected readonly environment = environment;
 }

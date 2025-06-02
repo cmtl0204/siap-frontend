@@ -35,6 +35,27 @@
             [dirty]="passwordField.dirty" />
     </div>
 
+    @if (roleControl.hasValidator(Validators.required)) {
+        <div class="flex flex-col gap-2">
+            <label
+                appLabel for="role"
+                label="Rol"
+                [required]="roleControl"></label>
+
+            <p-select
+                [options]="roles"
+                [formControl]="roleControl"
+                optionLabel="name"
+            />
+
+            <p-message
+                appErrorMessage
+                [errors]="roleControl.errors"
+                [touched]="roleControl.touched"
+                [dirty]="roleControl.dirty"/>
+        </div>
+    }
+
     <div class="flex flex-col gap-2">
         <p-button
             label="Ingresar"

@@ -4,14 +4,14 @@
             <span class="flex items-center gap-2 w-full">
                 <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
 
-                <span class="font-bold whitespace-nowrap">Viabilidad Técnica</span>
+                <span class="font-bold whitespace-nowrap">Viabilidad técnica</span>
 
                 <p-fileupload
                     mode="basic"
                     name="file"
                     chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx"
+                    maxFileSize="2000000"
                     (uploadHandler)="uploadTechnicalFeasibilityDocument($event)"
                     [customUpload]="true"
                     [auto]="true"
@@ -70,8 +70,8 @@
                     mode="basic"
                     name="file"
                     chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx"
+                    maxFileSize="2000000"
                     (uploadHandler)="uploadApprovalDocument($event)"
                     [customUpload]="true"
                     [auto]="true"
@@ -130,8 +130,8 @@
                     mode="basic"
                     name="file"
                     chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx"
+                    maxFileSize="2000000"
                     (uploadHandler)="uploadProgramDocument($event)"
                     [customUpload]="true"
                     [auto]="true"

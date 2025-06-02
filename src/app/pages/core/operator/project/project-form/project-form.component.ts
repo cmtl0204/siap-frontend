@@ -177,4 +177,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
     get executorUndersecretaryField(): AbstractControl {
         return this.form.controls['executorUndersecretary'];
     }
+
+    protected readonly Validators = Validators;
 }

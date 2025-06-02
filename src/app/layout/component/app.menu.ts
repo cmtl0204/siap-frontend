@@ -6,6 +6,7 @@ import { AppMenuitem } from './app.menuitem';
 import { MY_ROUTES } from '@routes';
 import { AuthService } from '@modules/auth/auth.service';
 import { Ripple } from 'primeng/ripple';
+import { RoleEnum } from '@utils/enums';
 
 @Component({
     selector: 'app-menu',
@@ -34,32 +35,65 @@ export class AppMenu implements OnInit {
     protected readonly authService = inject(AuthService);
 
     ngOnInit() {
-        this.model = [
-            {
-                label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
-            },
-            {
-                label: 'MINTUR',
-                items: [
+        switch (this.authService.role.code){
+         case RoleEnum.PLANNER:
+             this.model = [
+                 {
+                     label: 'Home',
+                     items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                 },
+                 {
+                     label: 'MINTUR',
+                     items: [
+                         {
+                             label: 'Planes Estratégicos',
+                             icon: PrimeIcons.SITEMAP,
+                             routerLink: [MY_ROUTES.corePages.planner.strategicPlan.list.absolute]
+                         },
+                         {
+                             label: 'Programas',
+                             icon: PrimeIcons.LIST,
+                             routerLink: [MY_ROUTES.corePages.planner.program.list.absolute]
+                         },
+                         {
+                             label: 'Proyectos',
+                             icon: PrimeIcons.LIST_CHECK,
+                             routerLink: [MY_ROUTES.corePages.planner.project.list.absolute]
+                         }
+                     ]
+                 }
+             ];
+             break;
+
+            case RoleEnum.OPERATOR:
+                this.model = [
                     {
-                        label: 'Planes Estratégicos',
-                        icon: PrimeIcons.SITEMAP,
-                        routerLink: [MY_ROUTES.corePages.operator.strategicPlan.list.absolute]
+                        label: 'Home',
+                        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
                     },
                     {
-                        label: 'Programas',
-                        icon: PrimeIcons.LIST,
-                        routerLink: [MY_ROUTES.corePages.operator.program.list.absolute]
-                    },
-                    {
-                        label: 'Proyectos',
-                        icon: PrimeIcons.LIST_CHECK,
-                        routerLink: [MY_ROUTES.corePages.operator.project.list.absolute]
+                        label: 'MINTUR',
+                        items: [
+                            {
+                                label: 'Planes Estratégicos',
+                                icon: PrimeIcons.SITEMAP,
+                                routerLink: [MY_ROUTES.corePages.operator.strategicPlan.list.absolute]
+                            },
+                            {
+                                label: 'Programas',
+                                icon: PrimeIcons.LIST,
+                                routerLink: [MY_ROUTES.corePages.operator.program.list.absolute]
+                            },
+                            {
+                                label: 'Proyectos',
+                                icon: PrimeIcons.LIST_CHECK,
+                                routerLink: [MY_ROUTES.corePages.operator.project.list.absolute]
+                            }
+                        ]
                     }
-                ]
-            }
-        ];
+                ];
+                break;
+        }
     }
 
     signOut() {

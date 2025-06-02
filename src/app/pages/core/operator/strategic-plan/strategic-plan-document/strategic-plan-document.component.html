@@ -4,18 +4,7 @@
             <span class="flex items-center gap-2 w-full">
                 <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
 
-                <span class="font-bold whitespace-nowrap">Viabilidad Técnica</span>
-
-                <p-fileupload
-                    mode="basic"
-                    name="file"
-                    chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
-                    (uploadHandler)="uploadTechnicalFeasibilityDocument($event)"
-                    [customUpload]="true"
-                    [auto]="true"
-                    chooseLabel="Cargar archivo" />
+                <span class="font-bold whitespace-nowrap">Validación</span>
             </span>
         </p-accordion-header>
 
@@ -65,17 +54,6 @@
                 <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
 
                 <span class="font-bold whitespace-nowrap">Aprobación</span>
-
-                <p-fileupload
-                    mode="basic"
-                    name="file"
-                    chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
-                    (uploadHandler)="uploadApprovalDocument($event)"
-                    [customUpload]="true"
-                    [auto]="true"
-                    chooseLabel="Cargar archivo" />
             </span>
         </p-accordion-header>
 
@@ -124,18 +102,7 @@
             <span class="flex items-center gap-2 w-full">
                 <i [class]="PrimeIcons.CHEVRON_RIGHT"></i>
 
-                <span class="font-bold whitespace-nowrap">Documentos del programa</span>
-
-                <p-fileupload
-                    mode="basic"
-                    name="file"
-                    chooseIcon="pi pi-upload"
-                    accept=".pdf"
-                    maxFileSize="1000000"
-                    (uploadHandler)="uploadProgramDocument($event)"
-                    [customUpload]="true"
-                    [auto]="true"
-                    chooseLabel="Cargar archivo" />
+                <span class="font-bold whitespace-nowrap">Documentos del plan estratégico</span>
             </span>
         </p-accordion-header>
 

@@ -1,9 +1,8 @@
 export const environment = {
     production: false,
-    // API_URL: 'https://api-convenios-des.turismo.gob.ec',
-    API_URL: 'http://10.10.20.119:3000/api/v1',
-    URL: 'http://0.0.0.0:4200',
-    APP_NAME: '(Pruebas QA) Sistema Informático "Fondo de Desarrollo Turístico del Ecuador"',
-    APP_SHORT_NAME: '(Pruebas QA) SIFODETU',
+    API_URL: 'https://api-siap-pruebas.turismo.gob.ec/api/v1',
+    URL: 'https://siap-pruebas.turismo.gob.ec',
+    APP_NAME: '(Pruebas QA) Sistema Informático de Administración de Proyectos',
+    APP_SHORT_NAME: '(Pruebas QA) SIAP',
     PATH_ASSETS: 'qa'
 };

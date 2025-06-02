@@ -80,6 +80,62 @@ export const MY_ROUTES = {
                     absolute: '/main/core/operator/strategic-plans/document'
                 }
             }
+        },
+        planner: {
+            base: 'planner',
+            absolute: '/main/core/planner',
+            dashboard: {
+                base: 'dashboard',
+                absolute: '/main/core/planner/dashboard'
+            },
+            project: {
+                base: 'projects',
+                absolute: '/main/core/planner/projects',
+                list: {
+                    base: 'projects/list',
+                    absolute: '/main/core/planner/projects/list'
+                },
+                form: {
+                    base: 'projects/form',
+                    absolute: '/main/core/planner/projects/form'
+                },
+                document: {
+                    base: 'projects/document',
+                    absolute: '/main/core/planner/projects/document'
+                }
+            },
+            program: {
+                base: 'programs',
+                absolute: '/main/core/planner/programs',
+                list: {
+                    base: 'programs/list',
+                    absolute: '/main/core/planner/programs/list'
+                },
+                form: {
+                    base: 'programs/form',
+                    absolute: '/main/core/planner/programs/form'
+                },
+                document: {
+                    base: 'programs/document',
+                    absolute: '/main/core/planner/programs/document'
+                }
+            },
+            strategicPlan: {
+                base: 'strategic-plans',
+                absolute: '/main/core/planner/strategic-plans',
+                list: {
+                    base: 'strategic-plans/list',
+                    absolute: '/main/core/planner/strategic-plans/list'
+                },
+                form: {
+                    base: 'strategic-plans/form',
+                    absolute: '/main/core/planner/strategic-plans/form'
+                },
+                document: {
+                    base: 'strategic-plans/document',
+                    absolute: '/main/core/planner/strategic-plans/document'
+                }
+            }
         }
     },
     authPages: {
