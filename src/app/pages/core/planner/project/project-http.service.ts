@@ -14,14 +14,20 @@ export class ProjectHttpService {
     private readonly _apiUrl = `${environment.API_URL}/core/planner/projects`;
     private readonly _customMessageService = inject(CustomMessageService);
 
-    findAll(page: number = 1) {
+    findAll(page = 1, search: string | null) {
         const url = `${this._apiUrl}`;
 
-        const params = new HttpParams().append('page', page).append('limit', 10);
+        let params = new HttpParams();
+
+        params = params.set('page', page);
+
+        if (search) {
+            params = params.set('search', search);
+        }
 
         return this._httpClient.get<HttpResponseInterface>(url, { params }).pipe(
             map((response) => {
-                return response.data;
+                return response;
             })
         );
     }

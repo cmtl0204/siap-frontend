@@ -1,19 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { ProjectInterface } from '@modules/core/interfaces';
-import { Button } from 'primeng/button';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { ButtonActionComponent } from '@utils/components/button-action/button-action.component';
 import { viewButtonAction } from '@utils/components/button-action/consts';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { Router } from '@angular/router';
 import { MY_ROUTES } from '@routes';
-import { Tooltip } from 'primeng/tooltip';
 import { StrategicPlanHttpService } from '@modules/core/operator/strategic-plan/strategic-plan-http.service';
 
 @Component({
     selector: 'app-strategic-plan-list',
-    imports: [TableModule, Button, ButtonActionComponent, Tooltip],
+    imports: [TableModule, ButtonActionComponent],
     templateUrl: './strategic-plan-list.component.html',
     styleUrl: './strategic-plan-list.component.scss'
 })

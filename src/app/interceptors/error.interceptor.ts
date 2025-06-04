@@ -13,7 +13,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         catchError((error: HttpErrorResponse) => {
             _coreService.hideLoading();
             _coreService.hideProcessing();
-            console.log(error);
             _customMessageService.showHttpError(error.error);
             return throwError(() => error);
         })

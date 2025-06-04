@@ -4,7 +4,6 @@ import { PrimeIcons } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { FileInterface } from '@utils/interfaces';
 import { Button } from 'primeng/button';
-import { FileUpload } from 'primeng/fileupload';
 import { environment } from '@env/environment';
 import { CustomMessageService } from '@utils/services/custom-message.service';
 import { ProjectHttpService } from '@modules/core/operator/project/project-http.service';
@@ -16,7 +15,7 @@ import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-strategic-plan-document',
-    imports: [Accordion, AccordionPanel, AccordionHeader, AccordionContent, TableModule, Button, FileUpload, Tooltip, DatePipe],
+    imports: [Accordion, AccordionPanel, AccordionHeader, AccordionContent, TableModule, Button, Tooltip, DatePipe],
     templateUrl: './strategic-plan-document.component.html',
     styleUrl: './strategic-plan-document.component.scss'
 })

@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, effect, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { Fluid } from 'primeng/fluid';
+import { StrategicPlanListComponent } from '@modules/core/planner/strategic-plan/strategic-plan-list/strategic-plan-list.component';
 
 @Component({
     selector: 'app-planner-dashboard',
-    imports: [ChartModule, Fluid],
+    imports: [ChartModule, StrategicPlanListComponent],
     templateUrl: './planner-dashboard.component.html',
     styleUrl: './planner-dashboard.component.scss'
 })

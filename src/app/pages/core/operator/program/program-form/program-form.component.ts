@@ -14,10 +14,11 @@ import { CustomMessageService } from '@utils/services/custom-message.service';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { MY_ROUTES } from '@routes';
 import { Router } from '@angular/router';
+import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-program-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Divider],
     templateUrl: './program-form.component.html',
     styleUrl: './program-form.component.scss'
 })
@@ -49,7 +50,7 @@ export class ProgramFormComponent implements OnInit, OnChanges {
         if (changes['id'] && this.id && this.id !== 'new') {
             this.findProgram();
         } else if (this.id === 'new') {
-            this.form.enable(); // si quieres permitir edición
+            this.form.enable();
         }
     }
 

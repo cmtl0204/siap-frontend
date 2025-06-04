@@ -14,10 +14,11 @@ import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.serv
 import { MY_ROUTES } from '@routes';
 import { Router } from '@angular/router';
 import { StrategicPlanHttpService } from '@modules/core/planner/strategic-plan/strategic-plan-http.service';
+import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-strategic-plan-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Divider],
     templateUrl: './strategic-plan-form.component.html',
     styleUrl: './strategic-plan-form.component.scss'
 })
@@ -49,7 +50,7 @@ export class StrategicPlanFormComponent implements OnInit, OnChanges {
         if (changes['id'] && this.id && this.id !== 'new') {
             this.findStrategicPlan();
         } else if (this.id === 'new') {
-            this.form.enable(); // si quieres permitir edición
+            this.form.enable();
         }
     }
 

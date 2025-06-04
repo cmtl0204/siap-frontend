@@ -16,7 +16,6 @@ export const versionInterceptor: HttpInterceptorFn = (req, next) => {
             if (httpEvent instanceof HttpResponse) {
                 const version = (httpEvent.body as HttpResponseInterface).version;
 
-                console.log(version);
                 if (version) {
                     _coreService.newVersion = version;
 

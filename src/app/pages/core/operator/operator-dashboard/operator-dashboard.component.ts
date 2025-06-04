@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, effect, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { Fluid } from 'primeng/fluid';
+import { StrategicPlanListComponent } from '@modules/core/operator/strategic-plan/strategic-plan-list/strategic-plan-list.component';
 
 @Component({
     selector: 'app-operator-dashboard',
-    imports: [ChartModule, Fluid],
+    imports: [ChartModule, StrategicPlanListComponent],
     templateUrl: './operator-dashboard.component.html',
     styleUrl: './operator-dashboard.component.scss'
 })

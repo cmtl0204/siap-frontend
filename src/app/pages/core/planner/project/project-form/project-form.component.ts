@@ -18,10 +18,11 @@ import { MY_ROUTES } from '@routes';
 import { ProgramHttpService } from '@modules/core/planner/program/program-http.service';
 import { Select } from 'primeng/select';
 import { Router } from '@angular/router';
+import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-project-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Select],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Select, Divider],
     templateUrl: './project-form.component.html',
     styleUrl: './project-form.component.scss'
 })
@@ -58,7 +59,7 @@ export class ProjectFormComponent implements OnInit, OnChanges {
         if (changes['id'] && this.id && this.id !== 'new') {
             this.findProject();
         } else if (this.id === 'new') {
-            this.form.enable(); // si quieres permitir edición
+            this.form.enable();
         }
     }
 
