@@ -14,11 +14,10 @@ import { CustomMessageService } from '@utils/services/custom-message.service';
 import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.service';
 import { MY_ROUTES } from '@routes';
 import { Router } from '@angular/router';
-import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-program-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Divider],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button],
     templateUrl: './program-form.component.html',
     styleUrl: './program-form.component.scss'
 })

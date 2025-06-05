@@ -18,11 +18,10 @@ import { MY_ROUTES } from '@routes';
 import { ProgramHttpService } from '@modules/core/operator/program/program-http.service';
 import { Select } from 'primeng/select';
 import { Router } from '@angular/router';
-import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-project-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Select, Divider],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Select],
     templateUrl: './project-form.component.html',
     styleUrl: './project-form.component.scss'
 })

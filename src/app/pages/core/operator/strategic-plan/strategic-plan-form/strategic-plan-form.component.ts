@@ -14,11 +14,10 @@ import { BreadcrumbService } from '../../../../../layout/service/breadcrumb.serv
 import { MY_ROUTES } from '@routes';
 import { Router } from '@angular/router';
 import { StrategicPlanHttpService } from '@modules/core/operator/strategic-plan/strategic-plan-http.service';
-import { Divider } from 'primeng/divider';
 
 @Component({
     selector: 'app-strategic-plan-form',
-    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button, Divider],
+    imports: [Fluid, InputText, ReactiveFormsModule, LabelDirective, ErrorMessageDirective, Message, DatePickerModule, InputNumberModule, Button],
     templateUrl: './strategic-plan-form.component.html',
     styleUrl: './strategic-plan-form.component.scss'
 })

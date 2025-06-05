@@ -4,10 +4,11 @@ import { AuthService } from '@modules/auth/auth.service';
 import { RoleEnum } from '@utils/enums';
 import { AdminDashboardComponent } from '@modules/core/admin/admin-dashboard/admin-dashboard.component';
 import { BreadcrumbService } from '../../layout/service/breadcrumb.service';
+import { PlannerDashboardComponent } from '@modules/core/planner/planner-dashboard/planner-dashboard.component';
 
 @Component({
     selector: 'app-dashboards',
-    imports: [OperatorDashboardComponent, AdminDashboardComponent],
+    imports: [OperatorDashboardComponent, AdminDashboardComponent, PlannerDashboardComponent],
     templateUrl: './dashboards.component.html',
     styleUrl: './dashboards.component.scss'
 })

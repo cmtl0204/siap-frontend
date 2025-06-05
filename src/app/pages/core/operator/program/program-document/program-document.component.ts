@@ -31,6 +31,7 @@ export class ProgramDocumentComponent implements OnInit {
     protected approvalDocuments: FileInterface[] = [];
     protected programDocuments: FileInterface[] = [];
     protected fileUploadUrl: string = environment.API_URL;
+    protected activeIndex: string = '0';
 
     constructor() {}
 
@@ -52,6 +53,7 @@ export class ProgramDocumentComponent implements OnInit {
         this._fileHttpService.upload(formData, this.projectId, type.id!).subscribe({
             next: (data) => {
                 this.findTechnicalFeasibilityDocuments();
+                this.activeIndex = '1';
             }
         });
     }
@@ -74,6 +76,7 @@ export class ProgramDocumentComponent implements OnInit {
         this._fileHttpService.upload(formData, this.projectId, type.id!).subscribe({
             next: (data) => {
                 this.findApprovalDocuments();
+                this.activeIndex = '2';
             }
         });
     }
@@ -96,6 +99,7 @@ export class ProgramDocumentComponent implements OnInit {
         this._fileHttpService.upload(formData, this.projectId, type.id!).subscribe({
             next: (data) => {
                 this.findProgramDocuments();
+                this.activeIndex = '3';
             }
         });
     }
