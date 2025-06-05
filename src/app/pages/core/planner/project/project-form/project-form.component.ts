@@ -30,13 +30,14 @@ export class ProjectFormComponent implements OnInit, OnChanges {
     private readonly _formBuilder = inject(FormBuilder);
     protected readonly _router = inject(Router);
     private readonly _breadcrumbService = inject(BreadcrumbService);
-    private readonly _programHttpService = inject(ProgramHttpService);
-    private readonly _projectHttpService = inject(ProjectHttpService);
+    protected readonly PrimeIcons = PrimeIcons;
+    protected readonly Validators = Validators;
     protected readonly _authService = inject(AuthService);
     protected readonly _customMessageService = inject(CustomMessageService);
+    private readonly _programHttpService = inject(ProgramHttpService);
+    private readonly _projectHttpService = inject(ProjectHttpService);
     protected form!: FormGroup;
     protected programs: ProgramInterface[] = [];
-    protected readonly PrimeIcons = PrimeIcons;
 
     constructor() {
         this._breadcrumbService.setItems([
@@ -177,6 +178,4 @@ export class ProjectFormComponent implements OnInit, OnChanges {
     get executorUndersecretaryField(): AbstractControl {
         return this.form.controls['executorUndersecretary'];
     }
-
-    protected readonly Validators = Validators;
 }
