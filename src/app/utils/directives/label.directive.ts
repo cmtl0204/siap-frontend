@@ -36,8 +36,6 @@ export class LabelDirective implements OnInit {
         // Si es requerido, agrega el asterisco con estilos
         if (this._required) {
             const requiredSymbol = this.renderer.createElement('i');
-            const asterisk = this.renderer.createText('*');
-            // this.renderer.appendChild(requiredSymbol, asterisk);
             this.renderer.addClass(requiredSymbol, 'pi');
             this.renderer.addClass(requiredSymbol, 'pi-asterisk');
             this.renderer.setStyle(requiredSymbol, 'font-size', '0.6rem');
